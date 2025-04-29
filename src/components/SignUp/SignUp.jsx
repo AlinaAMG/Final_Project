@@ -4,17 +4,27 @@ import "../../pages/RegisterPage/RegisterPage.css";
 
 function SignUp({ onSignUp }) {
   const [user, setUser] = useState({
-    userName: "",
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if (user.password !== user.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
     onSignUp(user);
 
     alert("signUp success!");
+
+    setUser({
+      userName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
   };
 
   const handleChange = (e) => {
@@ -29,10 +39,10 @@ function SignUp({ onSignUp }) {
       <form onSubmit={handleSubmit} className="register-form">
         <input
           type="text"
-          name="userName"
+          name="name"
           placeholder="User name"
           className="register-input"
-          value={user.userName}
+          value={user.name}
           required
           onChange={handleChange}
         />

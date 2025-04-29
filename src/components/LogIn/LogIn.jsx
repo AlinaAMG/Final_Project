@@ -5,10 +5,25 @@ import "./LogIn.css";
 
 function LogIn({ onLogin }) {
   const [user, setUser] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onLogin(user);
+
+    if (!user.email || !user.password) {
+      alert("Please fill in all fields");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await onLogin(user);
+      setUser({ email: "", password: "" });
+    } catch (error) {
+      alert("Login failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -42,8 +57,8 @@ function LogIn({ onLogin }) {
         <Link to="/" className="forgot-link">
           Forgot password?{" "}
         </Link>
-        <button type="submit" className="btn">
-          LogIn
+        <button type="submit" className="btn" disabled={loading}>
+          {loading ? "Logging in..." : "LogIn"}
         </button>
       </form>
     </div>
