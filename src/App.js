@@ -15,15 +15,17 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/quiz" element={<CoffeeQuiz />} />
+         {/* <Route path="/shop" element={<Shop />} />  */}
+        {/* <Route path="shop/:id" element={<CardDetails/>}/> */}
         {/* <Route path="/all-coffees" element={<AllCoffees />} /> */}
-        {/* <Route path="/shop" element={<Shop />} />  */}
-           {/* <Route path="/shop/single-origin" element={<SingleOrgin />} />
+         {/* <Route path="/shop/single-origin" element={<SingleOrgin />} />
           <Route path="/shop/organic" element={<Organic />} />
           <Route path="/shop/premium-blends" element={<PremiumBlends />} />
+
           <Route path="/coffee-box" element={<CoffeeBox />} />
          
           <Route path="/testimonials" element={<Testimonials />} />
-          <Route path="/contact" element={<Testimonials />} />
+          <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/about" element={<About/>} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login/>} />  */}
