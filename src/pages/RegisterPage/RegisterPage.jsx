@@ -50,6 +50,18 @@ function RegisterPage() {
       );
     }
   };
+  const handleLogOut = async () => {
+    try {
+      await axios.get("http://localhost:4001/api/auth/logout");
+
+      localStorage.removeItem("token");
+      navigate("/");
+    } catch (error) {
+      alert(
+        "Logout failed: " + (error.response?.data?.message || error.message)
+      );
+    }
+  };
 
   return (
     <div className="register-wrap">
