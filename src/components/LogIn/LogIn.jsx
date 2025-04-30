@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../pages/RegisterPage/RegisterPage.css";
-import "./LogIn.css";
 
 function LogIn({ onLogin }) {
   const [user, setUser] = useState({ email: "", password: "" });
