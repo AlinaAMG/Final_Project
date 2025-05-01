@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url('./img/coffee.png') no-repeat center center;
+  background: url("./img/coffee.png") no-repeat center center;
   background-size: cover;
   text-align: center;
 }
@@ -18,14 +18,14 @@
 
 .hero h1 {
   font-size: 3rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: bold;
   margin-bottom: 1rem;
 }
 
 .hero p {
   font-size: 1.25rem;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   margin-bottom: 2rem;
 }
 
@@ -41,7 +41,7 @@
   border-radius: 25px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 }
 
 .cta-button:hover {

@@ -18,10 +18,11 @@ function RegisterPage() {
         "http://localhost:4001/api/auth/singin",
         user
       );
-      const { token } = response.data;
+      const { token, username } = response.data;
+      localStorage.setItem("username", username);
 
       localStorage.setItem("token", token);
-      navigate("/");
+      navigate("/shop");
     } catch (error) {
       alert(
         "Login failed: " + (error.response?.data?.message || error.message)
@@ -36,9 +37,12 @@ function RegisterPage() {
         user
       );
 
-      if (response && response.data && response.data.token) {
-        localStorage.setItem("token", response.data.token);
+      if (response?.data?.token) {
+        const { token, username } = response.data;
+        localStorage.setItem("token", token);
+        localStorage.setItem("username", username);
         navigate("/");
+        window.dispatchEvent(new Event("storage"));
       } else {
         alert("Registration successful!");
         navigate("/login");
@@ -47,18 +51,6 @@ function RegisterPage() {
       alert(
         "Registration failed: " +
           (error.response?.data?.message || error.message)
-      );
-    }
-  };
-  const handleLogOut = async () => {
-    try {
-      await axios.get("http://localhost:4001/api/auth/logout");
-
-      localStorage.removeItem("token");
-      navigate("/");
-    } catch (error) {
-      alert(
-        "Logout failed: " + (error.response?.data?.message || error.message)
       );
     }
   };
