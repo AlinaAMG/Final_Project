@@ -1,6 +1,11 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
+
+import React from "react";
+import "./App.css";
+
+import { BrowserRouter, Routes, Route } from "react-router";
+
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
+
 import Header from './components/Header/Header';
 import Home from './components/Home';
 import Footer from './components/Footer/Footer';
@@ -19,7 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/quiz" element={<CoffeeQuiz />} />
-
+       <Route path="/login" element={<RegisterPage />} />
          <Route path="/shop/all-coffees" element={<AllCoffees />} />
         {/* <Route path="/shop/single-origin" element={<SingleOrigin />} />
         <Route path="/shop/organic" element={<Organic />} />
@@ -31,6 +36,7 @@ function App() {
         <Route path="/about" element={<OurStory />} />
         {/* <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} /> */}
+
       </Routes>
 
       <Footer />
