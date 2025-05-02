@@ -64,7 +64,9 @@ const Header = () => {
             </button>
             {isDropdownOpen === "shop" && (
               <ul>
-                <li>
+              
+             
+                 <li>
                   <Link to="/shop/all-coffees">All Coffees</Link>
                 </li>
                 <li>
@@ -84,7 +86,7 @@ const Header = () => {
             <Link to="/coffee-box">Coffee Box</Link>
           </li>
           <li>
-            <Link to="/shop">Our Origins</Link>
+            <Link to="/our-origins">Our Origins</Link>
           </li>
           <li>
             <Link to="/quiz">Coffee Quiz</Link>
@@ -93,11 +95,12 @@ const Header = () => {
             <Link to="/testimonials">Testimonials</Link>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-          <li>
             <Link to="/about">Our Story</Link>
           </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+          
 
           <li>
             <Link to="/cart">
