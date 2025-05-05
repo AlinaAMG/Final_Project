@@ -19,7 +19,7 @@ const getAllCoffeeBoxes = (req, res) => {
 const getCoffeeBoxDetails = (req, res) => {
     const { _id } = req.params; // Extract the category from the request parameters
 
-    // console.log(_id);
+     console.log(_id);
 
     if (!mongoose.isValidObjectId(_id)) {
         return res.status(400).send({ error: 'Invalid coffee box ID.' });
