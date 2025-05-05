@@ -1,20 +1,21 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
-import Header from './components/Header/Header';
-import Home from './components/Home';
-import Footer from './components/Footer/Footer';
-import CoffeeQuiz from './components/Quiz/Quiz';
-import OurStory from './components/OurStory/OurStory';
-import OurOrigins from './components/OurOrigins/OurOrigins';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
+import Header from "./components/Header/Header";
+import Home from "./components/Home";
+import Footer from "./components/Footer/Footer";
+import CoffeeQuiz from "./components/Quiz/Quiz";
+import OurStory from "./components/OurStory/OurStory";
+import OurOrigins from "./components/OurOrigins/OurOrigins";
+import RegisterPage from "./components/RegisterPage/RegisterPage.jsx";
 
-import AllCoffees from './components/AllCoffees/AllCoffees';
-import ContactForm from './components/ContactForm/ContactForm';
+import AllCoffees from "./components/AllCoffees/AllCoffees";
+import ContactForm from "./components/ContactForm/ContactForm";
 import CoffeeDetail from "./components/CoffeeDetails/CoffeeDetails";
-import FavoritesPage from './components/Favorites/Favorites';
+import FavoritesPage from "./components/Favorites/Favorites";
 import Cart from "./components/CartPage/Cart";
-import CheckoutPage from './components/CheckoutPage/CheckoutPage';
-import NotFoundPage from './components/404Page/404';
+import CheckoutPage from "./components/CheckoutPage/CheckoutPage";
+import NotFoundPage from "./components/404Page/404";
 
 function App() {
   return (
@@ -32,14 +33,14 @@ function App() {
         <Route path="/our-origins" element={<OurOrigins />} />
         <Route path="/shop/:id" element={<CoffeeDetail />} />
         <Route path="/favorites" element={<FavoritesPage />} />
-        <Route path="/check-out" element={<CheckoutPage/>}/>
+        <Route path="/check-out" element={<CheckoutPage />} />
         {/* <Route path="/coffee-box" element={<CoffeeBox />} /> */}
         {/* <Route path="/testimonials" element={<Testimonials />} /> */}
         <Route path="/contact" element={<ContactForm />} />
         <Route path="/about" element={<OurStory />} />
-         <Route path="/cart" element={<Cart />}/> 
-        {/* <Route path="/login" element={<Login />} /> */}
-        <Route path = "*" element={<NotFoundPage/>}/>
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={<RegisterPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
       <Footer />

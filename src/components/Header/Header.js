@@ -1,13 +1,26 @@
-import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
-import './Header.css';
+import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import DropboxUser from "../DropboxUser/DropboxUser";
+import "./Header.css";
 
 const Header = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false); // For the mobile menu toggle
+  const [username, setUsername] = useState(null);
 
-  const handleDropdownToggle = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+  useEffect(() => {
+    const handleStorage = () => {
+      const storedName = localStorage.getItem("username");
+      setUsername(storedName);
+    };
+
+    handleStorage();
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
+  }, []);
+
+  const handleDropdownToggle = (menu) => {
+    setIsDropdownOpen((prev) => (prev === menu ? null : menu));
   };
 
   const toggleMenu = () => {
@@ -33,17 +46,24 @@ const Header = () => {
       </button>
 
       {/* Menu */}
-      <div className={`menu ${isMenuOpen ? 'active' : ''}`}>
+      <div className={`menu ${isMenuOpen ? "active" : ""}`}>
+        {username?.trim() && (
+          <span className="welcome-msg">Welcome, {username.trim()[0]}!</span>
+        )}
         <ul>
           <li>
             <Link to="/">Home</Link>
           </li>
 
           <li>
-            <button className="drop-down" onClick={handleDropdownToggle}>
+            <button
+              className="drop-down"
+              onClick={() => handleDropdownToggle("shop")}
+            >
               Shop
             </button>
-            {isDropdownOpen && (
+
+            {isDropdownOpen === "shop" && (
               <ul>
                 <li>
                   <Link to="/shop/all-coffees">All Coffees</Link>
@@ -93,18 +113,6 @@ const Header = () => {
                 </svg>
               </span>
             </Link>
-            <Link to="/login">
-              <span className="login-icon">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8V22h19.2v-2.8c0-3.2-6.4-4.8-9.6-4.8z" />
-                </svg>
-              </span>
-            </Link>
           </li>
           <li>
             <Link to="/cart">
@@ -126,6 +134,9 @@ const Header = () => {
                 </svg>
               </span>
             </Link>
+          </li>
+          <li className="menu-user-dropdown">
+            <DropboxUser />
           </li>
         </ul>
       </div>
