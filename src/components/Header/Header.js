@@ -7,11 +7,14 @@ const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false); // For the mobile menu toggle
   const [username, setUsername] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   useEffect(() => {
     const handleStorage = () => {
       const storedName = localStorage.getItem("username");
+      const storedToken = localStorage.getItem("token");
       setUsername(storedName);
+      setToken(storedToken);
     };
 
     handleStorage();
@@ -47,7 +50,7 @@ const Header = () => {
 
       {/* Menu */}
       <div className={`menu ${isMenuOpen ? "active" : ""}`}>
-        {username?.trim() && (
+        {username?.trim() && token && (
           <span className="welcome-msg">Welcome, {username.trim()[0]}!</span>
         )}
         <ul>
@@ -135,10 +138,32 @@ const Header = () => {
               </span>
             </Link>
           </li>
-          <li className="menu-user-dropdown">
-            <DropboxUser />
+          <li className="menu-user-dropdown mobile-only">
+            <button
+              className="drop-down"
+              onClick={() => handleDropdownToggle("user")}
+            >
+              <span className="login-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8V22h19.2v-2.8c0-3.2-6.4-4.8-9.6-4.8z" />
+                </svg>
+              </span>
+            </button>
+            {isDropdownOpen === "user" && (
+              <div className="dropdown-wrapper">
+                <DropboxUser open={true} />
+              </div>
+            )}
           </li>
         </ul>
+        <div className="dropbox-container desktop-only">
+          <DropboxUser />
+        </div>
       </div>
     </nav>
   );
