@@ -35,21 +35,12 @@ function RegisterPage() {
     }
   };
 
+
   const handleSignUp = async (user) => {
     try {
       await axios.post("http://localhost:4001/api/auth/signup", user);
       alert("Registration successful! Please log in.");
-      setIsLogin(true);
-      //   if (response?.data?.token) {
-      //     const { token, username } = response.data;
-      //     localStorage.setItem("token", token);
-      //     localStorage.setItem("username", username);
-      //     navigate("/");
-      //     window.dispatchEvent(new Event("storage"));
-      //   } else {
-      //     alert("Registration successful!");
-      //     navigate("/login");
-      //   }
+      setIsLogin(true)
     } catch (error) {
       alert(
         "Registration failed: " +

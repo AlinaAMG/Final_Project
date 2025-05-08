@@ -21,6 +21,7 @@ import Cart from "./components/CartPage/Cart";
 import CheckoutPage from "./components/CheckoutPage/CheckoutPage";
 import CoffeeBlog from "./components/CoffeeBlog/CoffeeBlog";
 import ReviewsPage from "./components/ReviewsPage/ReviewsPage";
+
 import NotFoundPage from "./components/404Page/404";
 import DashBoard from "./pages/DashBoard";
 
@@ -66,9 +67,6 @@ const App = () => {
         <Route path="/check-out" element={<CheckoutPage />} />
         
         <Route path="/blog" element={<CoffeeBlog />} />
-
-
-      
         <Route path="/reviews" element={<ReviewsPage />} />
 
         <Route path="/coffee-box" element={<CoffeeBox />} />
@@ -76,9 +74,10 @@ const App = () => {
         <Route path="/about" element={<OurStory />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<RegisterPage />} />
+        <Route path="/dashboard" element={<DashBoard />} />
         <Route path="*" element={<NotFoundPage />} />
 
-        <Route path="/dashboard" element={<DashBoard />} />
+      
       </Routes>
 
       <Footer />
