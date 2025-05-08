@@ -32,10 +32,12 @@ const UserSchema = new mongoose.Schema({
     confirmPassword: {
         type: String,
         required: true,
-        // minLength: 6
+        
     },
     role: {
-        type: String
+        type: String,
+        enum: ["USER", "ADMIN"],
+        default: "USER",  // Default role is "USER"
     }
 },
     {

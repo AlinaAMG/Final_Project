@@ -33,6 +33,34 @@ const addUser = async (req, res) => {
             res.status(500).send(err)
         })
 }
+
+
+
+
+
+// const addUser = async (req, res) => {
+//     const { name, email, password, confirmPassword, role } = req.body;
+    
+//     // Hash password before saving
+//     const hashedPassword = await bcrypt.hash(password, 10);
+
+//     // Create the user
+//     const user = new UserModel({
+//         name,
+//         email,
+//         password: hashedPassword,
+//         confirmPassword: hashedPassword,  // Ensure confirmPassword is the same as password
+//         role: role || 'USER'  // Default to 'USER' if role is not provided
+//     });
+
+//     user.save()
+//         .then(data => {
+//             res.status(200).send({ name: data.name, email: data.email, role: data.role });
+//         })
+//         .catch(err => {
+//             res.status(500).send({ error: 'Error saving user', details: err });
+//         });
+// }
 /**
  *login user
  *@route POST /api/auth/singin

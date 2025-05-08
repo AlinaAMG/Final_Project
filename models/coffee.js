@@ -72,7 +72,13 @@ const coffeeSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-  
+    formOptions: {
+      type: [String], // this allows an array of strings
+      enum: ['whole beans', 'grounded'],
+      required: true,
+      default: ['whole beans', 'grounded']
+    }
+  ,
   suitableFor: {
     type: [String], // Array of strings to represent different types of coffee
     required: true,

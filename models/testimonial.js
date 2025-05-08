@@ -11,6 +11,11 @@ const TestimonialSchema = new mongoose.Schema({
       message: "Author field cannot be empty and must be bigger than 3 letters.",
     },
   },
+  user: {  // This is the user field, set as optional
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',  // Assuming you have a User model, and referencing the user who created the testimonial
+    required: false  // Set to false to make it optional
+},
   text: {
     type: String,
     required: true,
@@ -26,6 +31,16 @@ const TestimonialSchema = new mongoose.Schema({
     min: 1,
     max: 5,
     required: false,
+  },
+  title: {
+    type: String,
+    required: false,
+    validate: {
+      validator: (value) => {
+        return value.trim().length > 5;
+      },
+      message: "Title must be at least 6 characters long.",
+    },
   },
   date: {
     type: Date,

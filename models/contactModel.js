@@ -21,7 +21,7 @@ const contactSchema = new mongoose.Schema({
         required: true,
         validate: {
             validator: (value) => {
-              return value.trim().length > 30;
+              return value.trim().length > 5;
             },
             message: "Message cannot be empty and must be bigger than 30 letters.",
           }
