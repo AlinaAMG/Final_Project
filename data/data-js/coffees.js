@@ -382,7 +382,7 @@ const coffees = [
       "Organic Ethiopian Sidamo offers a unique flavor profile with bright acidity and floral notes of jasmine and bergamot. Its full-bodied taste is balanced with a slight citrusy sweetness, making it a versatile coffee for various brewing methods.",
     imageUrl:
       "https://plus.unsplash.com/premium_photo-1672406540165-bbb755ffc221?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTI4fHxjb2ZmZWV8ZW58MHx8MHx8fDA%3D",
-    price: 28.65,
+    price: 19.65,
     category: "Organic",
     suitableFor: ['Pour Over', 'French Press', 'Aeropress', 'Espresso'],
 
@@ -403,7 +403,7 @@ const coffees = [
       "This organic coffee from Mexico is known for its rich, earthy flavor with undertones of dark chocolate. The smooth finish and balanced acidity make it an excellent choice for those who prefer a medium-bodied coffee with depth.",
     imageUrl:
       "https://images.unsplash.com/photo-1493925410384-84f842e616fb?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTMzfHxjb2ZmZWV8ZW58MHx8MHx8fDA%3D",
-    price: 35.99,
+    price: 30.99,
     category: "Organic",
     region: "Mexico",
     suitableFor: ['Drip Coffee', 'French Press', 'Espresso'],
@@ -424,7 +424,7 @@ const coffees = [
       "Organic Costa Rican coffee is known for its rich, creamy body with vibrant citrus flavors and a touch of honey sweetness. It has a clean, crisp finish and is perfect for those who love a bright cup with a smooth texture.",
     imageUrl:
       "https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTB8fGNvZmZlZXxlbnwwfHwwfHx8MA%3D%3D",
-    price: 27.99,
+    price: 21.99,
     category: "Organic",
     region: "Costa Rica",
     slug: "organic-costa-rican-coffee",

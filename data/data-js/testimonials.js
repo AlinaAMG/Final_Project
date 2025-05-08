@@ -41,13 +41,7 @@ const testimonials = [
     verified: false,
     date: new Date("2023-10-18")
   },
-  {
-    author: "David Taylor",
-    text: "The product broke after just two weeks of use. Very disappointed.",
-    rating: 2,
-    verified: true,
-    date: new Date("2023-11-03")
-  },
+ 
   {
     author: "Jennifer Anderson",
     text: "Perfect! Exactly what I was looking for. Will buy again!",
