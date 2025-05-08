@@ -15,6 +15,8 @@ const getTestimonials = (req, res) => {
         })
 }
 
+
+
 const addTestimonial= async (req, res) => {
     const { ...testimonial} = req.body
     // console.log(testimonial, req.body)
@@ -27,6 +29,8 @@ const addTestimonial= async (req, res) => {
             res.status(500).send(err)
         })
 }
+
+
 
 const deleteTestimonial = (req, res) => {
     const { _id } = req.body; // Extract the _id from the request parameters
@@ -45,6 +49,7 @@ const deleteTestimonial = (req, res) => {
             res.status(500).send({ error: 'Error deleting testimonial', details: err });
         });
 };
+
 
 const updateTestimonial = (req, res) => {
     const { _id } = req.body

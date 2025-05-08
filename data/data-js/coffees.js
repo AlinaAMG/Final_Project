@@ -23,8 +23,10 @@ const coffees = [
     roastLevel: "Medium",
     notes: ["Smooth", "Earthy", "Low Acidity", "Chocolatey"],
     soldOut: false,
-    bestSeller: true
+    bestSeller: true,
+    formOptions: ['whole beans', 'grounded'],
   },
+
   
   {
     name: "Panama Geisha",
@@ -50,6 +52,7 @@ const coffees = [
     slug: "panama-geisha",
     soldOut: false,
     rating: 4.6,
+    formOptions: ['whole beans', 'grounded'],
   },
   {
     name: "Ethiopian Yirgacheffe",
@@ -77,6 +80,7 @@ const coffees = [
     slug: "ethiopian-yirgacheffe",
     soldOut: true,
     rating: 4.5,
+    formOptions: ['whole beans', 'grounded'],
   },
 
   {
@@ -100,6 +104,7 @@ const coffees = [
     slug: "sumatra-mandheling",
     soldOut: false,
     rating: 4.3,
+    formOptions: ['whole beans', 'grounded'],
   },
   {
     name: "Guatemalan Antigua",
@@ -122,6 +127,7 @@ const coffees = [
     slug: "guatemalan-antigua",
     soldOut: false,
     rating: 4.6,
+    formOptions: ['whole beans', 'grounded'],
   },
   {
     name: "Brazilian Santos",
@@ -145,6 +151,7 @@ const coffees = [
     slug: "brazilian-santos",
     soldOut: false,
     rating: 4.9,
+    formOptions: ['whole beans', 'grounded'],
   },
   {
     name: "Colombian Supremo",
@@ -172,6 +179,7 @@ const coffees = [
     slug: "colombian-supremo",
     soldOut: true,
     rating: 4.8,
+    formOptions: ['whole beans', 'grounded'],
   },
   {
     name: "Costa Rican Tarrazú",
@@ -195,6 +203,7 @@ const coffees = [
     slug: "costa-rican-tarrazu",
     soldOut: false,
     rating: 4.1,
+    formOptions: ['whole beans', 'grounded'],
   },
   {
     name: "Kenyan AA",
@@ -222,6 +231,7 @@ const coffees = [
     slug: "kenyan-aa",
     soldOut: true,
     rating: 3.9,
+    formOptions: ['whole beans', 'grounded'],
   },
   {
     name: "Tanzania Peaberry",
@@ -243,7 +253,8 @@ const coffees = [
     roastLevel: "Medium",
     notes: ["Citrus", "Berry", "Bright", "Wine-like"],
     soldOut: false,
-    bestSeller: true
+    bestSeller: true,
+    formOptions: ['whole beans', 'grounded'],
   },
   
   {
@@ -270,6 +281,7 @@ const coffees = [
     slug: "hawaiian-kona",
     soldOut: false,
     rating: 4.1,
+    formOptions: ['whole beans', 'grounded'],
   },
 
   {
@@ -298,6 +310,7 @@ const coffees = [
     slug: "blue-mountain-blend",
     soldOut: false,
     rating: 4.7,
+    formOptions: ['whole beans', 'grounded'],
   },
   {
     name: "Café de Colombia Blend",
@@ -319,6 +332,7 @@ const coffees = [
     slug: "cafe-de-colombia-blend",
     soldOut: false,
     rating: 4.6,
+    formOptions: ['whole beans', 'grounded'],
   },
   {
     name: "Italian Espresso Blend",
@@ -338,6 +352,7 @@ const coffees = [
     slug: "italian-espresso-blend",
     soldOut: false,
     rating: 4.6,
+    formOptions: ['whole beans', 'grounded'],
   },
   {
     name: "Organic Peru Coffee",
@@ -358,6 +373,7 @@ const coffees = [
     notes: ["Nutty", "Caramel", "Smooth", "Clean"],
     soldOut: false,
     bestSeller: true,
+    formOptions: ['whole beans', 'grounded'],
   },
   {
     name: "Organic Ethiopian Sidamo",
@@ -378,6 +394,7 @@ const coffees = [
     notes: ["Floral", "Citrus", "Bright", "Full-bodied"],
     soldOut: false,
     bestSeller: false,
+    formOptions: ['whole beans', 'grounded'],
   },
   {
     name: "Organic Mexican Coffee",
@@ -398,6 +415,7 @@ const coffees = [
     notes: ["Earthy", "Chocolate", "Smooth", "Balanced"],
     soldOut: false,
     bestSeller: true,
+    formOptions: ['whole beans', 'grounded'],
   },
   {
     name: "Organic Costa Rican Coffee",
@@ -418,6 +436,7 @@ const coffees = [
     notes: ["Citrus", "Honey", "Creamy", "Bright"],
     soldOut: false,
     bestSeller: true,
+    formOptions: ['whole beans', 'grounded'],
   },
   {
     name: "Kona Coffee from Hawaii",
@@ -438,6 +457,7 @@ const coffees = [
     notes: ["Macadamia Nut", "Chocolate", "Full-bodied", "Smooth"],
     soldOut: false,
     bestSeller: true,
+    formOptions: ['whole beans', 'grounded'],
   },
   {
     name: "Organic Indian Monsooned Malabar",
@@ -460,6 +480,7 @@ const coffees = [
     notes: ["Earthy", "Spicy", "Bold", "Smooth"],
     soldOut: false,
     bestSeller: false,
+    formOptions: ['whole beans', 'grounded'],
   },
 ];
 
