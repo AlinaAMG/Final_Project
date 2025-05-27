@@ -54,3 +54,23 @@ Here are the main features currently planned for the app:
 - **Free Delivery**: A banner displaying the "Free delivery from 39.99" offer for eligible purchases.
 - **Subscribe for 10% Off**: Users can subscribe to the newsletter to receive a 10% discount on their next purchase.
 
+## ScreenShots
+
+![Homepage](https://github.com/AlinaAMG/Final_Project/blob/master/img/First-Sip.jpg)
+
+![Homepage](https://github.com/AlinaAMG/Final_Project/blob/master/img/slider.jpg)
+
+![Homepage](https://github.com/AlinaAMG/Final_Project/blob/master/img/footer.jpg)
+
+![Shop](https://github.com/AlinaAMG/Final_Project/blob/master/img/shop.jpg)
+
+![Coffee Details Page](https://github.com/AlinaAMG/Final_Project/blob/master/img/coffeedetails.jpg)
+
+![Coffee Blog](https://github.com/AlinaAMG/Final_Project/blob/master/img/blog.jpg)
+
+![Coffee Form](https://github.com/AlinaAMG/Final_Project/blob/master/img/contactform.jpg)
+
+
+
+
+
