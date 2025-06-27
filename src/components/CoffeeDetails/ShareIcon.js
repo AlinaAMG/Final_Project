@@ -20,8 +20,7 @@ const ShareIcon = () => {
 
   return (
     <i
-      class
-      Name="bi bi-share-fill"
+      className="bi bi-share-fill"
       onClick={handleShare}
       title="Share this coffee"
       style={{ fontSize: '1.5rem', cursor: 'pointer' }}

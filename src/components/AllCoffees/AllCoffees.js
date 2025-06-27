@@ -38,9 +38,7 @@ function AllCoffees() {
     setLoading(true);
 
     axios
-      .get(
-        'https://https://coffeeapp-firstsip.onrender.com/api/coffees/all-coffees'
-      ) // Fetch all coffees
+      .get('https://coffeeapp-firstsip.onrender.com/api/coffees/all-coffees') // Fetch all coffees
       .then((res) => {
         console.log(res.data);
         setCoffees(res.data);
