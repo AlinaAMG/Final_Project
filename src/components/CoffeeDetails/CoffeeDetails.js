@@ -20,7 +20,7 @@ function CoffeeDetail() {
 
   useEffect(() => {
     axios
-      .get(`http://coffeeapp-firstsip.onrender.com/api/coffees/coffee/${id}`)
+      .get(`https://coffeeapp-firstsip.onrender.com/api/coffees/coffee/${id}`)
       .then((res) => {
         setCoffee(res.data);
         setLoading(false);

@@ -39,7 +39,7 @@ function AllCoffees() {
 
     axios
       .get(
-        'http://https://coffeeapp-firstsip.onrender.com/api/coffees/all-coffees'
+        'https://https://coffeeapp-firstsip.onrender.com/api/coffees/all-coffees'
       ) // Fetch all coffees
       .then((res) => {
         console.log(res.data);
@@ -59,8 +59,8 @@ function AllCoffees() {
     setLoading(true);
 
     const url = region
-      ? `http://coffeeapp-firstsip.onrender.com/api/coffees/${region}`
-      : `http://coffeeapp-firstsip.onrender.com/api/coffees/all-coffees`;
+      ? `https://coffeeapp-firstsip.onrender.com/api/coffees/${region}`
+      : `https://coffeeapp-firstsip.onrender.com/api/coffees/all-coffees`;
     axios
       .get(url)
       .then((response) => {

@@ -11,7 +11,7 @@ function BestSellers() {
   
   useEffect(() => {
     axios
-      .get('http://coffeeapp-firstsip.onrender.com/api/coffees/best-sellers')
+      .get('https://coffeeapp-firstsip.onrender.com/api/coffees/best-sellers')
       .then((response) => {
         console.log(response.data);
         setCoffees(response.data);

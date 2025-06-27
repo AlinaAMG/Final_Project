@@ -32,7 +32,7 @@ function CoffeeBoxTable() {
     const token = localStorage.getItem('token');
     axios
       .delete(
-        'http://coffeeapp-firstsip.onrender.com/api/coffees/delete-coffee',
+        'https://coffeeapp-firstsip.onrender.com/api/coffees/delete-coffee',
         toDelete,
         {
           headers: {

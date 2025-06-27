@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './Reviews.css'; // Import custom CSS
-import "./Reviews.css";
+import './Reviews.css';
 
 const Reviews = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -26,9 +26,17 @@ const Reviews = () => {
     // Create 5 stars based on the rating
     for (let i = 1; i <= 5; i++) {
       if (i <= rating) {
-        stars.push(<span key={i} className="star filled">★</span>); // filled star
+        stars.push(
+          <span key={i} className="star filled">
+            ★
+          </span>
+        ); // filled star
       } else {
-        stars.push(<span key={i} className="star empty">★</span>); // empty star
+        stars.push(
+          <span key={i} className="star empty">
+            ★
+          </span>
+        ); // empty star
       }
     }
     return stars;
@@ -44,14 +52,15 @@ const Reviews = () => {
           <div key={i} className="review-card">
             {/* User Icon */}
             <div className="user-info">
-              <img 
-                src="https://www.w3schools.com/w3images/avatar2.png" 
-                alt="User Avatar" 
+              <img
+                src="https://www.w3schools.com/w3images/avatar2.png"
+                alt="User Avatar"
                 className="user-avatar"
               />
               <div>
                 <p className="user-name">{t.author}</p>
-                <p className="review-date">{t.date.slice(0, 10)}</p> {/* Display date */}
+                <p className="review-date">{t.date.slice(0, 10)}</p>{' '}
+                {/* Display date */}
               </div>
             </div>
 
@@ -68,13 +77,9 @@ const Reviews = () => {
 
       {/* Right Arrow Link to View All Reviews */}
       <div className="read-more-link">
-        <Link
-          to="/reviews"
-          className="read-more-button"
-        >
+        <Link to="/reviews" className="read-more-button">
           Read more reviews →
-              </Link>
-             
+        </Link>
       </div>
     </div>
   );

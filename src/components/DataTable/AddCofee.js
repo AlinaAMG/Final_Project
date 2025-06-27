@@ -46,7 +46,7 @@ function AddCaffee({ onClose }) {
     const token = localStorage.getItem('token');
     axios
       .post(
-        'http://coffeeapp-firstsip.onrender.com/api/coffees/add-coffee',
+        'https://coffeeapp-firstsip.onrender.com/api/coffees/add-coffee',
         formData,
         {
           headers: {

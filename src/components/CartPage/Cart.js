@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { FaShoppingBasket, FaTrash } from "react-icons/fa";
-import "./Cart.css";
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { FaShoppingBasket, FaTrash } from 'react-icons/fa';
+import './Cart.css';
 
 function CartPage() {
   const [cartItems, setCartItems] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    console.log("Cart loaded:", storedCart);
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    console.log('Cart loaded:', storedCart);
     setCartItems(storedCart);
   }, []);
 
-  
   const handleQuantityChange = (index, newQuantity) => {
     const updatedCart = [...cartItems];
     updatedCart[index].quantity = parseInt(newQuantity);
@@ -32,30 +31,29 @@ function CartPage() {
     // Dispatch event to update navbar cart count
     window.dispatchEvent(new Event('cartUpdated'));
   };
-  
-  
+
   const handleDelete = (index) => {
     const updatedCart = cartItems.filter((_, i) => i !== index);
     setCartItems(updatedCart);
-  
+
     // Save the updated cart in localStorage
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+
     // Update cart count in localStorage after deleting an item
     const updatedCartCount = updatedCart.reduce(
       (acc, item) => acc + item.quantity,
       0
     );
-    localStorage.setItem("cartCount", updatedCartCount);
-  
+    localStorage.setItem('cartCount', updatedCartCount);
+
     // Dispatch event to notify that the cart has been updated
-    window.dispatchEvent(new Event("cartUpdated"));
+    window.dispatchEvent(new Event('cartUpdated'));
   };
 
   const getTotalPrice = () => {
     return cartItems
       .reduce((total, item) => {
-        const isSubscription = item.type === "subscription";
+        const isSubscription = item.type === 'subscription';
 
         if (isSubscription) {
           // Subscription box: flat price
@@ -63,7 +61,7 @@ function CartPage() {
         } else {
           // Regular coffee item
           const basePrice = item.coffee?.price || 0;
-          const weightMultiplier = item.selectedWeight === "1000g" ? 4 : 1;
+          const weightMultiplier = item.selectedWeight === '1000g' ? 4 : 1;
           return total + basePrice * weightMultiplier * item.quantity;
         }
       }, 0)
@@ -72,7 +70,7 @@ function CartPage() {
 
   const handleClick = () => {
     // you could add logic here first
-    navigate("/check-out");
+    navigate('/check-out');
   };
 
   // Calculate shipping fee
@@ -98,7 +96,7 @@ function CartPage() {
       <div className="cart-wrapper">
         <div className="cart-items">
           {cartItems.map((item, index) => {
-            const isSubscription = item.type === "subscription";
+            const isSubscription = item.type === 'subscription';
 
             return (
               <div className="cart-item" key={index}>
@@ -106,16 +104,16 @@ function CartPage() {
                   src={
                     isSubscription
                       ? !item.imageUrl
-                        ? "path/to/placeholder.jpg"
+                        ? 'path/to/placeholder.jpg'
                         : item.imageUrl
                       : !item.coffee?.imageUrl
-                      ? "path/to/placeholder.jpg"
+                      ? 'path/to/placeholder.jpg'
                       : item.coffee?.imageUrl
                   }
                   alt={
                     isSubscription
-                      ? item.name || "Coffee Box"
-                      : item.coffee?.name || "Coffee"
+                      ? item.name || 'Coffee Box'
+                      : item.coffee?.name || 'Coffee'
                   }
                   className="cart-item-img"
                 />
@@ -124,13 +122,13 @@ function CartPage() {
                   <h4>{isSubscription ? item.name : item.coffee?.name}</h4>
 
                   <p>
-                    Weight:{" "}
+                    Weight:{' '}
                     {isSubscription ? `${item.weight}g` : item.selectedWeight}
                   </p>
 
                   <p className="qty">
                     Quantity:
-                     <select
+                    <select
                       value={item.quantity}
                       onChange={(e) =>
                         handleQuantityChange(index, e.target.value)
@@ -150,7 +148,7 @@ function CartPage() {
                       ? (item.price * item.quantity).toFixed(2)
                       : (
                           item.coffee?.price *
-                          (item.selectedWeight === "1000g" ? 4 : 1) *
+                          (item.selectedWeight === '1000g' ? 4 : 1) *
                           item.quantity
                         ).toFixed(2)}
                   </p>
@@ -177,7 +175,7 @@ function CartPage() {
             <h3>Shipping:</h3>
             <h5>
               {shippingFee === 0
-                ? "Free Shipping"
+                ? 'Free Shipping'
                 : ` €${shippingFee.toFixed(2)}`}
             </h5>
           </div>

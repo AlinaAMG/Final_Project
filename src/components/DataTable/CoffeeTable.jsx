@@ -28,7 +28,7 @@ function CoffeeTable() {
 
   useEffect(() => {
     axios
-      .get('http://coffeeapp-firstsip.onrender.com/api/coffees/all-coffees') // Fetch all coffees
+      .get('https://coffeeapp-firstsip.onrender.com/api/coffees/all-coffees') // Fetch all coffees
       .then((res) => {
         console.log(res.data);
         setCoffees(res.data);
@@ -42,7 +42,7 @@ function CoffeeTable() {
     const token = localStorage.getItem('token');
     axios
       .put(
-        'http://coffeeapp-firstsip.onrender.com/api/coffees/update-coffee',
+        'https://coffeeapp-firstsip.onrender.com/api/coffees/update-coffee',
         updated,
         {
           headers: {
