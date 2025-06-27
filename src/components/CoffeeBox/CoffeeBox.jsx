@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import "./CoffeeBox.css";
+import './CoffeeBox.css';
 // import { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from "react-router-dom";
-import blumountainImg from "./img/blue-mountain.png";
-import koffieImg from "./img/sumatra.png";
-import blackIvory from "./img/black-ivory.png";
+import { useNavigate, useLocation } from 'react-router-dom';
+import blumountainImg from './img/blue-mountain.png';
+import koffieImg from './img/sumatra.png';
+import blackIvory from './img/black-ivory.png';
 
 function CoffeeBox() {
   const [coffeeBoxes, setCoffeeBoxes] = useState([]); // Store all coffee boxes
@@ -16,63 +16,61 @@ function CoffeeBox() {
   const location = useLocation();
 
   useEffect(() => {
-
-  
-  const coffeeBoxesData = [
+    const coffeeBoxesData = [
       {
-        type: "subscription",
-        id: "single-origin-box",
-        name: "Single Origin Box",
+        type: 'subscription',
+        id: 'single-origin-box',
+        name: 'Single Origin Box',
         description:
-          "Explore the rich and diverse flavors of single origin coffees.",
-        price: 29.55, 
+          'Explore the rich and diverse flavors of single origin coffees.',
+        price: 29.55,
         weight: 1000,
-      quantity: 1,
-      roastLevel: "Light",
+        quantity: 1,
+        roastLevel: 'Light',
         imageUrl: koffieImg,
         coffeeSelection: [
           {
-            name: "Black Ivory Coffee",
-            description: "Fruity, floral, and full of flavor.",
-            region: "Ethiopia",
+            name: 'Black Ivory Coffee',
+            description: 'Fruity, floral, and full of flavor.',
+            region: 'Ethiopia',
             imageUrl: blackIvory,
           },
         ],
       },
       {
-        type: "subscription",
-        id: "organic-box",
-        name: "Organic Box",
-        description: "Certified organic coffees for a guilt-free experience.",
+        type: 'subscription',
+        id: 'organic-box',
+        name: 'Organic Box',
+        description: 'Certified organic coffees for a guilt-free experience.',
         price: 35.99,
-      
+
         weight: 1000,
         quantity: 1,
-          roastLevel: "Medium",
+        roastLevel: 'Medium',
         coffeeSelection: [
           {
-            name: "Sumatra Mandheling",
-            description: "Clean, with notes of caramel and cocoa.",
-            region: "Indonesia",
+            name: 'Sumatra Mandheling',
+            description: 'Clean, with notes of caramel and cocoa.',
+            region: 'Indonesia',
             imageUrl: koffieImg,
           },
         ],
       },
       {
-        type: "subscription",
-        id: "premium-box",
-        name: "Premium Box",
-       
-        description: "Handpicked premium beans from the best regions.",
+        type: 'subscription',
+        id: 'premium-box',
+        name: 'Premium Box',
+
+        description: 'Handpicked premium beans from the best regions.',
         price: 39.99,
         weight: 1000,
         quantity: 1,
-           roastLevel: "Dark",
+        roastLevel: 'Dark',
         coffeeSelection: [
           {
-            name: "Jamaican Blue Mountain",
-            description: "Luxuriously smooth and mellow.",
-            region: "Jamaica",
+            name: 'Jamaican Blue Mountain',
+            description: 'Luxuriously smooth and mellow.',
+            region: 'Jamaica',
             imageUrl: blumountainImg,
           },
         ],
@@ -84,11 +82,11 @@ function CoffeeBox() {
     setLoading(false);
 
     // Get cart from localStorage
-    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
     setCart(savedCart);
 
     // Get user data from localStorage if available
-    const userData = JSON.parse(localStorage.getItem("user"));
+    const userData = JSON.parse(localStorage.getItem('user'));
     if (userData) {
       setUser(userData);
     }
@@ -97,64 +95,58 @@ function CoffeeBox() {
   useEffect(() => {
     // Whenever the cart is updated, save it to localStorage
     if (cart.length > 0) {
-      localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem('cart', JSON.stringify(cart));
       const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
-      localStorage.setItem("cartCount", totalCount);
-      window.dispatchEvent(new Event("cartUpdated"));
+      localStorage.setItem('cartCount', totalCount);
+      window.dispatchEvent(new Event('cartUpdated'));
     }
   }, [cart]);
 
   const handleSubscribe = (box) => {
     if (!user) {
-      alert("Please log in first to subscribe to a coffee box!");
-      navigate("/login", { state: { from: location } });
+      alert('Please log in first to subscribe to a coffee box!');
+      navigate('/login', { state: { from: location } });
       return;
     }
-   
+
     const cartItem = {
       type: box.type,
       id: box.id,
       name: box.name,
       description: box.description,
       price: box.price,
-      roastLevel:box.roastLevel,
+      roastLevel: box.roastLevel,
       weight: box.weight,
       quantity: 1,
-      imageUrl: box.imageUrl || (box.coffeeSelection[0]?.imageUrl ?? ""),
+      imageUrl: box.imageUrl || (box.coffeeSelection[0]?.imageUrl ?? ''),
     };
 
-    
     setCart((prevCart) => {
-      
       const existingItemIndex = prevCart.findIndex(
         (item) => item.id === box.id
       );
 
       if (existingItemIndex > -1) {
-       
         const updatedCart = [...prevCart];
         updatedCart[existingItemIndex].quantity += 1;
-
-        
 
         const totalCount = updatedCart.reduce(
           (acc, item) => acc + item.quantity,
           0
         );
-        localStorage.setItem("cartCount", totalCount);
-        window.dispatchEvent(new Event("cartUpdated"));
+        localStorage.setItem('cartCount', totalCount);
+        window.dispatchEvent(new Event('cartUpdated'));
 
         alert(`Quantity of ${box.name} has been updated in your cart!`);
         return updatedCart;
       } else {
-        
         const updatedCart = [...prevCart, cartItem];
         const totalCount = updatedCart.reduce(
           (acc, item) => acc + item.quantity,
           0
         );
-        localStorage.setItem("cartCount", totalCount);
-        window.dispatchEvent(new Event("cartUpdated"));
+        localStorage.setItem('cartCount', totalCount);
+        window.dispatchEvent(new Event('cartUpdated'));
         alert(`${box.name} has been added to your cart!`);
         return updatedCart;
       }
@@ -162,7 +154,6 @@ function CoffeeBox() {
   };
 
   if (loading) return <div className="loading">Loading...</div>;
- 
 
   return (
     <div className="container">
@@ -176,40 +167,55 @@ function CoffeeBox() {
           Get 10% Discount if You Subscribe Today
         </button>
       </div>
-  
+
       <div className="coffeeBox-title">Choose Your Coffee Box</div>
-  
+
       <div className="coffeeBox-wrap">
         {coffeeBoxes.map((box) => (
           <div key={box.id} className="coffeeBox-card">
             <div className="coffeeBox-ribbon">
               <span>New</span>
             </div>
-  
+
             <div className="coffeeBox-name">{box.name}</div>
             <div className="coffeeBox-data1">
               <p>{box.description}</p>
-               <p><strong>Roast Level:</strong> {box.roastLevel}</p>
-              <p><strong>Weight:</strong> {box.weight} g</p>
+              <p>
+                <strong>Roast Level:</strong> {box.roastLevel}
+              </p>
+              <p>
+                <strong>Weight:</strong> {box.weight} g
+              </p>
               <p className="price-box">
                 <strong>Price:</strong> &euro; {box.price} / month
               </p>
-  
+
               <div className="coffeeBox-selection">
                 {box.coffeeSelection.map((coffee, coffeeIndex) => (
                   <div key={coffeeIndex} className="coffeeBox-item">
-                    <h4><strong>{coffee.name}</strong></h4>
+                    <h4>
+                      <strong>{coffee.name}</strong>
+                    </h4>
                     <p>{coffee.description}</p>
-                    <p><strong>Region:</strong> {coffee.region}</p>
+                    <p>
+                      <strong>Region:</strong> {coffee.region}
+                    </p>
                     {coffee.imageUrl && (
-                      <img className="img-boxes" src={coffee.imageUrl} alt={coffee.name} />
+                      <img
+                        className="img-boxes"
+                        src={coffee.imageUrl}
+                        alt={coffee.name}
+                      />
                     )}
                   </div>
                 ))}
               </div>
             </div>
-  
-            <button className="coffeeBox-button" onClick={() => handleSubscribe(box)}>
+
+            <button
+              className="coffeeBox-button"
+              onClick={() => handleSubscribe(box)}
+            >
               Subscribe Now
             </button>
           </div>
@@ -217,7 +223,6 @@ function CoffeeBox() {
       </div>
     </div>
   );
-  
 }
 
 export default CoffeeBox;

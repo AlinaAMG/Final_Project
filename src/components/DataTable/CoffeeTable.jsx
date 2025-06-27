@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
-import CoffeeEditModal from "./CoffeeEditModal";
-import AddCoffee from "./AddCofee";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import CoffeeEditModal from './CoffeeEditModal';
+import AddCoffee from './AddCofee';
+import axios from 'axios';
 
-const coffeeData = [
+export const coffeeData = [
   {
-    name: "",
-    description: "",
-    longDescription: "",
-    region: "",
-    notes: ["Chocolate", "Nutty"],
-    price:1,
-    category: "Single Origin",
+    name: '',
+    description: '',
+    longDescription: '',
+    region: '',
+    notes: ['Chocolate', 'Nutty'],
+    price: 1,
+    category: 'Single Origin',
     rating: 1,
     bestSeller: true,
     soldOut: false,
     weightOptions: [250, 1000],
-    imageUrl: "",
+    imageUrl: '',
   },
   // Add more
 ];
@@ -28,53 +28,53 @@ function CoffeeTable() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4001/api/coffees/all-coffees") // Fetch all coffees
+      .get('http://localhost:4001/api/coffees/all-coffees') // Fetch all coffees
       .then((res) => {
         console.log(res.data);
         setCoffees(res.data);
       })
       .catch((err) => {
-        console.error("Error fetching coffee data:", err);
+        console.error('Error fetching coffee data:', err);
       });
   }, [openAddCafee]);
 
   const handleUpdate = (updated) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     axios
-      .put("http://localhost:4001/api/coffees/update-coffee",
-        updated,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        })
+      .put('http://localhost:4001/api/coffees/update-coffee', updated, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
-        console.log("Update:", res);
-        setCoffees((prev) => prev.map((c) => (c._id === updated._id ? updated : c)));
+        console.log('Update:', res);
+        setCoffees((prev) =>
+          prev.map((c) => (c._id === updated._id ? updated : c))
+        );
         setSelectedCoffee(null);
       })
       .catch((err) => {
-        console.error("Error updating coffee data:", err);
+        console.error('Error updating coffee data:', err);
         alert(`Error updating coffee. ${err?.response?.data?.message}`);
       });
   };
 
   const handleDelete = (toDelete) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     axios
-      .delete("http://localhost:4001/api/coffees/delete-coffee", {
+      .delete('http://localhost:4001/api/coffees/delete-coffee', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
         data: toDelete,
       })
       .then((res) => {
-        console.log("Delete:", res);
+        console.log('Delete:', res);
         setCoffees((prev) => prev.filter((c) => c._id !== toDelete._id));
         setSelectedCoffee(null);
       })
       .catch((err) => {
-        console.error("Error deleting coffee data:", err);
+        console.error('Error deleting coffee data:', err);
         alert(`Error deleting coffee. ${err?.response?.data?.message}`);
       });
   };
@@ -83,7 +83,11 @@ function CoffeeTable() {
     <div className="container m-0">
       <div className="d-flex justify-content-between my-2">
         <h3>Coffee List</h3>
-        <button className="btn btn-outline-secondary me-2" type="button" onClick={() => setOpenCoffee(true)}>
+        <button
+          className="btn btn-outline-secondary me-2"
+          type="button"
+          onClick={() => setOpenCoffee(true)}
+        >
           Add Coffee
         </button>
       </div>
@@ -101,7 +105,11 @@ function CoffeeTable() {
               <td>{coffee.name}</td>
               <td>{coffee.description}</td>
               <td>
-                <button className="btn btn-sm btn-info" style={{ color: "white", backgroundColor: "#4b2e2a" }} onClick={() => setSelectedCoffee(coffee)}>
+                <button
+                  className="btn btn-sm btn-info"
+                  style={{ color: 'white', backgroundColor: '#4b2e2a' }}
+                  onClick={() => setSelectedCoffee(coffee)}
+                >
                   ☰
                 </button>
               </td>
@@ -110,7 +118,14 @@ function CoffeeTable() {
         </tbody>
       </table>
 
-      {selectedCoffee && <CoffeeEditModal coffee={selectedCoffee} onClose={() => setSelectedCoffee(null)} onUpdate={handleUpdate} onDelete={handleDelete} />}
+      {selectedCoffee && (
+        <CoffeeEditModal
+          coffee={selectedCoffee}
+          onClose={() => setSelectedCoffee(null)}
+          onUpdate={handleUpdate}
+          onDelete={handleDelete}
+        />
+      )}
       {openAddCafee && <AddCoffee onClose={() => setOpenCoffee(false)} />}
     </div>
   );

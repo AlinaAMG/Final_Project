@@ -22,7 +22,6 @@ function AllCoffees() {
   const [region, setRegion] = useState('');
   const navigate = useNavigate();
 
-
   const countryOptions = [
     { value: '', label: 'All Countries' },
     { value: 'Indonesia', label: 'Indonesia' },
@@ -53,7 +52,6 @@ function AllCoffees() {
       });
   }, []);
 
- 
   // Fetching coffees by the region
   useEffect(() => {
     setLoading(true);
@@ -72,7 +70,7 @@ function AllCoffees() {
       .catch((err) => console.log('Error fetching data:', err));
   }, [region]);
 
-  const applyFilters = () => {
+  useEffect(() => {
     let filtered = coffees;
 
     if (selectedCategory) {
@@ -95,15 +93,11 @@ function AllCoffees() {
     }
 
     setFilteredCoffees(filtered);
-  };
-  useEffect(() => {
-    applyFilters();
-  }, [searchTerm, selectedCategory, selectedPriceRange]);
+  }, [coffees, selectedCategory, selectedPriceRange, searchTerm]);
 
   const handleCategoryChange = (e) => {
     const selected = e.target.value;
     setSelectedCategory(selected);
-    // applyFilters(selected, selectedPriceRange);
   };
 
   const handlePriceChange = (e) => {
@@ -111,47 +105,46 @@ function AllCoffees() {
     setSelectedPriceRange(selected);
     // applyFilters(selectedCategory, selected);
   };
-//  Add styles to the Select 
+  //  Add styles to the Select
   const customSelectStyles = {
- control: (provided, state) => ({
+    control: (provided, state) => ({
       ...provided,
-  
-    borderRadius: '20px',
-    borderColor: state.isFocused ? '#8b5e3c;' : '#8b5e3c', 
-    boxShadow: state.isFocused ? '0 0 4px rgba(139, 94, 60, 0.5)' : 'none',
-    backgroundColor: "#f5f0e6",
-    color: "#4b2e2a",
-    cursor: "pointer",
-    minHeight: '42px',
-    '&:hover': {
-      borderColor: '#c2956a', // border on hover
-    },
-  }),
-    
-  placeholder: (provided) => ({
-    ...provided,
-  color: "#4b2e2a",
-   
+
+      borderRadius: '20px',
+      borderColor: state.isFocused ? '#8b5e3c;' : '#8b5e3c',
+      boxShadow: state.isFocused ? '0 0 4px rgba(139, 94, 60, 0.5)' : 'none',
+      backgroundColor: '#f5f0e6',
+      color: '#4b2e2a',
+      cursor: 'pointer',
+      minHeight: '42px',
+      '&:hover': {
+        borderColor: '#c2956a', // border on hover
+      },
     }),
-   menu: (provided) => ({
-    ...provided,
-    backgroundColor: '#f5f0e6', // Your desired background
-    borderRadius: '10px',
-    marginTop: '4px',
-    zIndex: 5,
+
+    placeholder: (provided) => ({
+      ...provided,
+      color: '#4b2e2a',
     }),
-   option: (provided, state) => ({
-    ...provided,
-    backgroundColor: state.isSelected
-      ? '#0d6efd' 
-      : state.isFocused
-      ? '  #0d6efd' 
-      : '#f5f0e6', // default background
-     color: state.isSelected? "#fff":state.isFocused?"#fff":"#4b2e2a",
-    cursor: 'pointer',
-    padding: '10px 12px',
-  }),
-}
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: '#f5f0e6', // Your desired background
+      borderRadius: '10px',
+      marginTop: '4px',
+      zIndex: 5,
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected
+        ? '#0d6efd'
+        : state.isFocused
+        ? '  #0d6efd'
+        : '#f5f0e6', // default background
+      color: state.isSelected ? '#fff' : state.isFocused ? '#fff' : '#4b2e2a',
+      cursor: 'pointer',
+      padding: '10px 12px',
+    }),
+  };
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -176,7 +169,6 @@ function AllCoffees() {
   return (
     <div className="container" style={{ backgroundColor: '#fff' }}>
       <div className="search-container">
-      
         <FaSearch className="search-icon" />
         <input
           type="text"
@@ -202,16 +194,15 @@ function AllCoffees() {
         </div>
         {/* Filter by the country of region */}
         <div className="region-filter">
-              <label className="label">Filter by Country:</label>
+          <label className="label">Filter by Country:</label>
           <Select
             styles={customSelectStyles}
             options={countryOptions}
             value={selectedCountryOption}
             onChange={(selectedOption) => {
-            setSelectedCountryOption(selectedOption);
-            setRegion(selectedOption?.value || '')
-            }
-            }
+              setSelectedCountryOption(selectedOption);
+              setRegion(selectedOption?.value || '');
+            }}
             placeholder="Select a country..."
           />
         </div>

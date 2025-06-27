@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import CoffeeEditModal from "./CoffeeEditModal";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import CoffeeEditModal from './CoffeeEditModal';
+import axios from 'axios';
+import { coffeeData } from './CoffeeTable';
 
 function CoffeeBoxTable() {
   const [selectedCoffee, setSelectedCoffee] = useState(null);
@@ -8,37 +9,39 @@ function CoffeeBoxTable() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4001/api/coffees/all-coffees") // Fetch all coffees
+      .get('http://localhost:4001/api/coffees/all-coffees') // Fetch all coffees
       .then((res) => {
         console.log(res.data);
         setCoffees(res.data);
       })
       .catch((err) => {
-        console.error("Error fetching coffee data:", err);
+        console.error('Error fetching coffee data:', err);
       });
   }, []);
 
   const handleUpdate = (updated) => {
-    setCoffees((prev) => prev.map((c) => (c._id === updated._id ? updated : c)));
+    setCoffees((prev) =>
+      prev.map((c) => (c._id === updated._id ? updated : c))
+    );
     setSelectedCoffee(null);
   };
 
   const handleDelete = (toDelete) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     axios
-      .delete("http://localhost:4001/api/coffees/delete-coffee", toDelete, {
+      .delete('http://localhost:4001/api/coffees/delete-coffee', toDelete, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
-        console.log("Delete:",res);
+        console.log('Delete:', res);
         setCoffees((prev) => prev.filter((c) => c._id !== toDelete._id));
         setSelectedCoffee(null);
       })
       .catch((err) => {
-        console.error("Error fetching coffee data:", err);
-        alert("Error deletind coffee.");
+        console.error('Error fetching coffee data:', err);
+        alert('Error deletind coffee.');
       });
   };
 
@@ -59,7 +62,11 @@ function CoffeeBoxTable() {
               <td>{coffee.name}</td>
               <td>{coffee.description}</td>
               <td>
-                <button className="btn btn-sm btn-info" style={{ color: "white", backgroundColor: "#4b2e2a" }} onClick={() => setSelectedCoffee(coffee)}>
+                <button
+                  className="btn btn-sm btn-info"
+                  style={{ color: 'white', backgroundColor: '#4b2e2a' }}
+                  onClick={() => setSelectedCoffee(coffee)}
+                >
                   ☰
                 </button>
               </td>
@@ -68,7 +75,14 @@ function CoffeeBoxTable() {
         </tbody>
       </table>
 
-      {selectedCoffee && <CoffeeEditModal coffee={selectedCoffee} onClose={() => setSelectedCoffee(null)} onUpdate={handleUpdate} onDelete={handleDelete} />}
+      {selectedCoffee && (
+        <CoffeeEditModal
+          coffee={selectedCoffee}
+          onClose={() => setSelectedCoffee(null)}
+          onUpdate={handleUpdate}
+          onDelete={handleDelete}
+        />
+      )}
     </div>
   );
 }

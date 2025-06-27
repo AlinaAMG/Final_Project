@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
-import Header from "./components/Header/Header";
-import Home from "./components/Home";
-import Footer from "./components/Footer/Footer";
-import CoffeeQuiz from "./components/Quiz/Quiz";
-import OurStory from "./components/OurStory/OurStory";
-import OurOrigins from "./components/OurOrigins/OurOrigins";
-import CoffeeBox from "./components/CoffeeBox/CoffeeBox";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './App.css';
+import Header from './components/Header/Header';
+import Home from './components/Home';
+import Footer from './components/Footer/Footer';
+import CoffeeQuiz from './components/Quiz/Quiz';
+import OurStory from './components/OurStory/OurStory';
+import OurOrigins from './components/OurOrigins/OurOrigins';
+import CoffeeBox from './components/CoffeeBox/CoffeeBox';
 
-import RegisterPage from "./components/RegisterPage/RegisterPage";
+import RegisterPage from './components/RegisterPage/RegisterPage';
 
-import AllCoffees from "./components/AllCoffees/AllCoffees";
-import ContactForm from "./components/ContactForm/ContactForm";
-import CoffeeDetail from "./components/CoffeeDetails/CoffeeDetails";
-import FavoritesPage from "./components/Favorites/Favorites";
-import Cart from "./components/CartPage/Cart";
+import AllCoffees from './components/AllCoffees/AllCoffees';
+import ContactForm from './components/ContactForm/ContactForm';
+import CoffeeDetail from './components/CoffeeDetails/CoffeeDetails';
+import FavoritesPage from './components/Favorites/Favorites';
+import Cart from './components/CartPage/Cart';
 
-import CheckoutPage from "./components/CheckoutPage/CheckoutPage";
-import CoffeeBlog from "./components/CoffeeBlog/CoffeeBlog";
-import ReviewsPage from "./components/ReviewsPage/ReviewsPage";
+import CheckoutPage from './components/CheckoutPage/CheckoutPage';
+import CoffeeBlog from './components/CoffeeBlog/CoffeeBlog';
+import ReviewsPage from './components/ReviewsPage/ReviewsPage';
 
-import NotFoundPage from "./components/404Page/404";
-import DashBoard from "./pages/DashBoard";
+import NotFoundPage from './components/404Page/404';
+import DashBoard from './pages/DashBoard';
 
 const App = () => {
   const [cartCount, setCartCount] = useState(0);
@@ -31,7 +31,7 @@ const App = () => {
   useEffect(() => {
     // Function to retrieve and set the cart count from localStorage
     const updateCartCount = () => {
-      const storedCartCount = localStorage.getItem("cartCount");
+      const storedCartCount = localStorage.getItem('cartCount');
       const count = storedCartCount ? parseInt(storedCartCount, 10) : 0;
       setCartCount(count);
     };
@@ -44,11 +44,11 @@ const App = () => {
       updateCartCount(); // Update cart count when event fires
     };
 
-    window.addEventListener("cartUpdated", handleCartUpdate);
+    window.addEventListener('cartUpdated', handleCartUpdate);
 
     return () => {
       // Clean up the event listener when the component unmounts
-      window.removeEventListener("cartUpdated", handleCartUpdate);
+      window.removeEventListener('cartUpdated', handleCartUpdate);
     };
   }, []);
 
@@ -58,14 +58,14 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/quiz" element={<CoffeeQuiz />} />
-        
+
         <Route path="/shop/all-coffees" element={<AllCoffees />} />
         <Route path="/our-origins" element={<OurOrigins />} />
         <Route path="/shop/:id" element={<CoffeeDetail />} />
         <Route path="/favorites" element={<FavoritesPage />} />
 
         <Route path="/check-out" element={<CheckoutPage />} />
-        
+
         <Route path="/blog" element={<CoffeeBlog />} />
         <Route path="/reviews" element={<ReviewsPage />} />
 
@@ -76,8 +76,6 @@ const App = () => {
         <Route path="/login" element={<RegisterPage />} />
         <Route path="/dashboard" element={<DashBoard />} />
         <Route path="*" element={<NotFoundPage />} />
-
-      
       </Routes>
 
       <Footer />

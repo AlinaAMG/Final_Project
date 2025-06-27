@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './ContactForm.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -14,7 +14,6 @@ const ContactForm = () => {
   const [agreeInfo, setAgreeInfo] = useState(false);
   const [agreePolicy, setAgreePolicy] = useState(false);
   const [error, setError] = useState('');
-
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -73,9 +72,7 @@ const ContactForm = () => {
   return (
     <div className="contact-container">
       <form className="glass-card" onSubmit={handleSubmit}>
-        <h2>
-         Do you want to contact us? Drop us a line below
-        </h2>
+        <h2>Do you want to contact us? Drop us a line below</h2>
         <input
           type="text"
           name="name"
@@ -130,14 +127,14 @@ const ContactForm = () => {
         <button type="submit">Send</button>
 
         {/* Show spinner while loading */}
-       {loading && (
+        {loading && (
           <div className="loading">
             <div className="spinner" />
             <p>Sending your message...</p>
           </div>
         )}
 
-         {/* Show success or error message after submission  */}
+        {/* Show success or error message after submission  */}
         <p className={error ? 'message error' : 'message status'}>
           {error || status}
         </p>
