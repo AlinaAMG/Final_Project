@@ -1,29 +1,29 @@
-import React, { useState } from "react";
+import { useState } from 'react';
 
-import "../RegisterPage/RegisterPage.css";
+import '../RegisterPage/RegisterPage.css';
 
 function SignUp({ onSignUp }) {
   const [user, setUser] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
   const handleSubmit = (e) => {
     e.preventDefault();
     if (user.password !== user.confirmPassword) {
-      alert("Passwords do not match!");
+      alert('Passwords do not match!');
       return;
     }
     onSignUp(user);
 
-    alert("signUp success!");
+    alert('signUp success!');
 
     setUser({
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
     });
   };
   const handleChange = (e) => {

@@ -1,8 +1,7 @@
 import './ReviewsPage.css';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import StarRating from '../StarRating/StarRating';
-
 
 const ReviewsPage = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -16,7 +15,7 @@ const ReviewsPage = () => {
   // Fetch testimonials from the backend when the component mounts
   useEffect(() => {
     axios
-      .get('http://localhost:4001/api/testimonials')
+      .get('https://coffeeapp-firstsip.onrender.com/api/testimonials')
       .then((response) => {
         setTestimonials(response.data); // Store fetched testimonials
       })
@@ -30,7 +29,7 @@ const ReviewsPage = () => {
 
     // Send the form data to the backend via POST request
     axios
-      .post('http://localhost:4001/api/testimonials', {
+      .post('https://coffeeapp-firstsip.onrender.com/api/testimonials', {
         author,
         text,
         title,
@@ -41,7 +40,7 @@ const ReviewsPage = () => {
         setMessage('Review added successfully!');
         setAuthor('');
         setText('');
-        setTitle("");
+        setTitle('');
         setRating(1);
         setTestimonials([response.data, ...testimonials]);
         setTimeout(() => {

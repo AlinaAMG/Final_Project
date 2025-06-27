@@ -1,7 +1,6 @@
-import React from 'react';
 import './HeroSection.css';
 import coffeeImage from './img/coffee.png';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
@@ -16,9 +15,10 @@ const HeroSection = () => {
             alt="Coffee Logo"
             className="cta-button-icon"
           />
-         <Link className="shop" to="/shop/all-coffees">Shop Now</Link>
-         </button>
-      
+          <Link className="shop" to="/shop/all-coffees">
+            Shop Now
+          </Link>
+        </button>
       </div>
     </section>
   );

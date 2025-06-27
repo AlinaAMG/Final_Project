@@ -45,11 +45,15 @@ function AddCaffee({ onClose }) {
     // console.log("form data=>", formData);
     const token = localStorage.getItem('token');
     axios
-      .post('http://localhost:4001/api/coffees/add-coffee', formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .post(
+        'http://coffeeapp-firstsip.onrender.com/api/coffees/add-coffee',
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         console.log(res.data);
         onClose(false);

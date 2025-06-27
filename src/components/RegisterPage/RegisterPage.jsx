@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LogIn from '../../components/LogIn/LogIn';
@@ -15,7 +15,7 @@ function RegisterPage() {
   const handleLogin = async (user) => {
     try {
       const response = await axios.post(
-        'http://localhost:4001/api/auth/signin',
+        'https://coffeeapp-firstsip.onrender.com/api/auth/signin',
         user
       );
       const { token, user: loggedInUser } = response.data;
@@ -38,7 +38,10 @@ function RegisterPage() {
 
   const handleSignUp = async (user) => {
     try {
-      await axios.post('http://localhost:4001/api/auth/signup', user);
+      await axios.post(
+        'https://coffeeapp-firstsip.onrender.com/api/auth/signup',
+        user
+      );
       alert('Registration successful! Please log in.');
       setIsLogin(true);
     } catch (error) {

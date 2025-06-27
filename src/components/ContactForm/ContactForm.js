@@ -45,7 +45,7 @@ const ContactForm = () => {
 
     try {
       const res = await axios.post(
-        'http://localhost:4001/api/contact',
+        'http://coffeeapp-firstsip.onrender.com/api/contact',
         formData,
         {
           headers: { 'Content-Type': 'application/json' },

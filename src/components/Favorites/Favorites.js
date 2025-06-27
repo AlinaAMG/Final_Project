@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Favorites.css';
-import { FaRegHeart} from 'react-icons/fa';
-
+import { FaRegHeart } from 'react-icons/fa';
 
 function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);
@@ -26,7 +25,8 @@ function FavoritesPage() {
   }, []);
 
   // Remove a coffee from favorites
-  const handleRemoveFavorite = (_id) => { // Use _id here
+  const handleRemoveFavorite = (_id) => {
+    // Use _id here
     const updatedFavorites = favorites.filter(
       (coffee) => coffee._id !== _id // Filter by _id
     );
@@ -45,7 +45,9 @@ function FavoritesPage() {
       {favorites.length > 0 ? (
         <div className="favorites-grid">
           {favorites.map((coffee) => (
-            <div key={coffee._id} className="favorite-card"> {/* Use _id here */}
+            <div key={coffee._id} className="favorite-card">
+              {' '}
+              {/* Use _id here */}
               <img
                 src={coffee.imageUrl}
                 alt={coffee.name}
@@ -59,7 +61,9 @@ function FavoritesPage() {
                 <p>
                   <strong>Price:</strong> €{coffee.price}
                 </p>
-                <Link to={`/shop/${coffee._id}`} className="favorite-card-link"> {/* Use _id here */}
+                <Link to={`/shop/${coffee._id}`} className="favorite-card-link">
+                  {' '}
+                  {/* Use _id here */}
                   View Details
                 </Link>
 
@@ -84,4 +88,3 @@ function FavoritesPage() {
 }
 
 export default FavoritesPage;
-

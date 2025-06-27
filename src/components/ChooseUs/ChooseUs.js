@@ -1,7 +1,6 @@
-import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaShippingFast, FaLeaf, FaAward } from 'react-icons/fa';
-import "./ChooseUs.css";
+import './ChooseUs.css';
 
 const WhyChooseUs = () => {
   return (
@@ -22,7 +21,9 @@ const WhyChooseUs = () => {
           <div className="col-md-4 mb-4">
             <FaAward size={40} className="mb-2 icon" />
             <h5>Top Quality</h5>
-            <p>Premium beans selected by world-class experts for every roast.</p>
+            <p>
+              Premium beans selected by world-class experts for every roast.
+            </p>
           </div>
         </div>
       </div>

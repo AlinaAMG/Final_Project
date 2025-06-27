@@ -1,4 +1,3 @@
-import React from 'react';
 import './Checkout.css';
 import { Link } from 'react-router-dom';
 import { FaCcVisa, FaCcMastercard, FaCcAmex, FaCcPaypal } from 'react-icons/fa';
@@ -16,13 +15,15 @@ const CheckoutPage = () => {
         <p>You are currently checking out as a guest.</p>
         <div className="login-redirect">
           <p>
-            Already have an account? <Link className="return" to="/login">LogIn here</Link>
+            Already have an account?{' '}
+            <Link className="return" to="/login">
+              LogIn here
+            </Link>
           </p>
         </div>
       </div>
       <h2>2.Shipping and Payment Information</h2>
       <form className="form">
-     
         <div className="form-group">
           <label htmlFor="fullName">Full Name</label>
           <input
@@ -106,7 +107,8 @@ const CheckoutPage = () => {
         </div>
         <div className="container-pay">
           <Link className="return" to="/cart">
-          <i className="bi bi-arrow-left" style={{ color: "#4b2e2a" }}></i> Return to Basket
+            <i className="bi bi-arrow-left" style={{ color: '#4b2e2a' }}></i>{' '}
+            Return to Basket
           </Link>
           <div className=" btn-payment">
             <button type="submit" className="primary-button">

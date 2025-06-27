@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-
 import './CoffeeBox.css';
-// import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import blumountainImg from './img/blue-mountain.png';
 import koffieImg from './img/sumatra.png';

@@ -28,7 +28,9 @@ function DropboxUser({ open: forceOpen = false }) {
 
   const handleLogOut = async () => {
     try {
-      await axios.get('http://localhost:4001/api/auth/logout');
+      await axios.get(
+        'https://coffeeapp-firstsip.onrender.com/api/auth/logout'
+      );
 
       localStorage.removeItem('token');
       localStorage.removeItem('username');

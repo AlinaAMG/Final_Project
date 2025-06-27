@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import './OurStory.css';
 import cofeeImage from './img/coffeebeans.png';
@@ -21,13 +20,18 @@ const OurStory = () => {
             the finest organic coffee, while making a real difference in the
             lives of the farmers who grow it. For us, it's not just about
             providing our customers with premium, ethically sourced coffee; it's
-            about supporting the people who make it possible.</p><p> Coffee farmers
-            around the world face countless challenges—climate change, economic
-            instability, and changing market conditions—all of which have a
-            direct impact on their ability to grow the quality coffee beans we
-            cherish.Through each cup of coffee, we invite you to join us on this journey of discovery—of flavor, of connection, and of making a positive impact. Together, we can create a ripple effect that extends far beyond the coffee itself, building a better world for farmers, consumers, and communities around the globe.
-
-
+            about supporting the people who make it possible.
+          </p>
+          <p>
+            {' '}
+            Coffee farmers around the world face countless challenges—climate
+            change, economic instability, and changing market conditions—all of
+            which have a direct impact on their ability to grow the quality
+            coffee beans we cherish.Through each cup of coffee, we invite you to
+            join us on this journey of discovery—of flavor, of connection, and
+            of making a positive impact. Together, we can create a ripple effect
+            that extends far beyond the coffee itself, building a better world
+            for farmers, consumers, and communities around the globe.
           </p>
         </div>
         <div className="story-card">
@@ -56,7 +60,17 @@ const OurStory = () => {
             we select is carefully chosen, roasted to perfection, and delivered
             to your cup with love and care.
           </p>
-          <p> But our commitment to quality goes beyond just the beans. It's about the entire process—from farm to cup. We prioritize direct relationships with our farmers, ensuring transparency and fair trade practices that benefit everyone involved. We believe in empowering farmers with the tools and knowledge they need to grow better coffee while fostering a deep respect for the environment. Through these partnerships, we can help improve not just the quality of the coffee but also the livelihoods of the communities that depend on it. </p>
+          <p>
+            {' '}
+            But our commitment to quality goes beyond just the beans. It's about
+            the entire process—from farm to cup. We prioritize direct
+            relationships with our farmers, ensuring transparency and fair trade
+            practices that benefit everyone involved. We believe in empowering
+            farmers with the tools and knowledge they need to grow better coffee
+            while fostering a deep respect for the environment. Through these
+            partnerships, we can help improve not just the quality of the coffee
+            but also the livelihoods of the communities that depend on it.{' '}
+          </p>
         </div>
       </section>
 

@@ -10,13 +10,13 @@ const Reviews = () => {
   // Fetch testimonials data from the backend
   useEffect(() => {
     axios
-      .get("http://localhost:4001/api/testimonials")
+      .get('https://coffeeapp-firstsip.onrender.com/api/testimonials')
       .then((response) => {
-        console.log(response.data); 
-        setTestimonials(response.data); 
+        console.log(response.data);
+        setTestimonials(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching testimonials:", error);
+        console.error('Error fetching testimonials:', error);
       });
   }, []);
 

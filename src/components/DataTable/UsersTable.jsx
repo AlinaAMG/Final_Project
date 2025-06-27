@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import CoffeeEditModal from './CoffeeEditModal'; 
+import { useState, useEffect } from 'react';
+import CoffeeEditModal from './CoffeeEditModal';
 import axios from 'axios';
-
+import { coffeeData } from './CoffeeTable';
 
 function UsersTable() {
   const [selectedCoffee, setSelectedCoffee] = useState(null);
@@ -9,28 +9,25 @@ function UsersTable() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:4001/api/coffees/all-coffees') // Fetch all coffees
+      .get('http://coffeeapp-firstsip.onrender.com/api/coffees/all-coffees') // Fetch all coffees
       .then((res) => {
         console.log(res.data);
         setCoffees(res.data);
       })
       .catch((err) => {
         console.error('Error fetching coffee data:', err);
-
       });
   }, []);
 
   const handleUpdate = (updated) => {
-    setCoffees(prev =>
-      prev.map(c => (c._id === updated._id ? updated : c))
+    setCoffees((prev) =>
+      prev.map((c) => (c._id === updated._id ? updated : c))
     );
     setSelectedCoffee(null);
   };
 
   const handleDelete = (toDelete) => {
-    setCoffees(prev =>
-      prev.filter(c => c._id !== toDelete._id)
-    );
+    setCoffees((prev) => prev.filter((c) => c._id !== toDelete._id));
     setSelectedCoffee(null);
   };
 
@@ -46,13 +43,18 @@ function UsersTable() {
           </tr>
         </thead>
         <tbody>
-          {coffees.map(coffee => (
+          {coffees.map((coffee) => (
             <tr key={coffee._id}>
               <td>{coffee.name}</td>
               <td>{coffee.description}</td>
               <td>
-                <button className="btn btn-sm btn-info" style={{color:"white", backgroundColor:"#4b2e2a"}} 
-                  onClick={() => setSelectedCoffee(coffee)}>☰</button>
+                <button
+                  className="btn btn-sm btn-info"
+                  style={{ color: 'white', backgroundColor: '#4b2e2a' }}
+                  onClick={() => setSelectedCoffee(coffee)}
+                >
+                  ☰
+                </button>
               </td>
             </tr>
           ))}

@@ -28,7 +28,7 @@ function CoffeeTable() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:4001/api/coffees/all-coffees') // Fetch all coffees
+      .get('http://coffeeapp-firstsip.onrender.com/api/coffees/all-coffees') // Fetch all coffees
       .then((res) => {
         console.log(res.data);
         setCoffees(res.data);
@@ -41,11 +41,15 @@ function CoffeeTable() {
   const handleUpdate = (updated) => {
     const token = localStorage.getItem('token');
     axios
-      .put('http://localhost:4001/api/coffees/update-coffee', updated, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .put(
+        'http://coffeeapp-firstsip.onrender.com/api/coffees/update-coffee',
+        updated,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         console.log('Update:', res);
         setCoffees((prev) =>
@@ -62,7 +66,7 @@ function CoffeeTable() {
   const handleDelete = (toDelete) => {
     const token = localStorage.getItem('token');
     axios
-      .delete('http://localhost:4001/api/coffees/delete-coffee', {
+      .delete('https://coffeeapp-firstsip.onrender.com/api/coffees/delete-coffee', {
         headers: {
           Authorization: `Bearer ${token}`,
         },

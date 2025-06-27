@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../Quiz/Quiz.css';
 import { Link } from 'react-router-dom';
 
@@ -37,16 +37,16 @@ const CoffeeQuiz = () => {
   // Please recommend a specific coffee type (like "Ethiopian light roast" or "Colombian dark roast") and explain why it matches their taste.
   // `;
 
-//   try {
-//     const response = await window.puter.ai.chat(prompt);
-//     setResult(response.message.content);
-//   } catch (error) {
-//     console.error('Error:', error);
-//     setResult('Something went wrong. Please try again.');
-//   }
+  //   try {
+  //     const response = await window.puter.ai.chat(prompt);
+  //     setResult(response.message.content);
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //     setResult('Something went wrong. Please try again.');
+  //   }
 
-//   setLoading(false);
-// };
+  //   setLoading(false);
+  // };
   // With static data
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -408,7 +408,7 @@ const CoffeeQuiz = () => {
       {result && (
         <div className="result">
           <h2>Your Coffee Recommendation:</h2>
-          <h3>{result.coffee}</h3> 
+          <h3>{result.coffee}</h3>
           <p className="coffee-rec">{result.description}</p>
         </div>
       )}

@@ -9,7 +9,9 @@ function CoffeeBoxTable() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:4001/api/coffees/all-coffees') // Fetch all coffees
+      .get(
+        'http://https://coffeeapp-firstsip.onrender.com/api/coffees/all-coffees'
+      ) // Fetch all coffees
       .then((res) => {
         console.log(res.data);
         setCoffees(res.data);
@@ -29,11 +31,15 @@ function CoffeeBoxTable() {
   const handleDelete = (toDelete) => {
     const token = localStorage.getItem('token');
     axios
-      .delete('http://localhost:4001/api/coffees/delete-coffee', toDelete, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .delete(
+        'http://coffeeapp-firstsip.onrender.com/api/coffees/delete-coffee',
+        toDelete,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         console.log('Delete:', res);
         setCoffees((prev) => prev.filter((c) => c._id !== toDelete._id));

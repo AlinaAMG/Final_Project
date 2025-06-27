@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './OurOrigins.css';
-
 import { Link } from 'react-router-dom';
+
 function OurOrigins() {
   const coffeeOrigins = [
     {
