@@ -1,7 +1,21 @@
 import { Link } from 'react-router-dom';
 import './Footer.css';
+import { useState } from 'react';
 
 function Footer() {
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (email.includes('@')) {
+      setMessage('Thank you for subscribing to our newsletter');
+      setEmail('');
+    } else {
+      setMessage('Fill your email address in..');
+    }
+  };
+
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -28,10 +42,27 @@ function Footer() {
         <div className="footer-subscribe">
           <h3>Subscribe for 10% Off</h3>
           <p>Get the latest news, offers, and coffee trends!</p>
-          <form className="subscribe-form">
-            <input type="email" placeholder="Enter your email" />
+          <form className="subscribe-form" onSubmit={handleSubmit}>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+
             <button type="submit">Subscribe</button>
           </form>
+          {message && (
+            <p
+              style={{
+                marginTop: '10px',
+                color: message.includes('Thank you') ? 'green' : 'red',
+              }}
+            >
+              {message}
+            </p>
+          )}
         </div>
 
         {/* Social Media Section (Follow Us) - Now on the right */}
@@ -70,9 +101,8 @@ function Footer() {
         <p>
           &copy; {new Date().getFullYear()}{' '}
           <Link to="/" className="link">
-            {' '}
             FIRST SIP COFFEE. <i className="bi bi-cup-hot-fill"></i>{' '}
-          </Link>{' '}
+          </Link>
           All rights reserved.
         </p>
       </div>

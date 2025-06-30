@@ -46,8 +46,6 @@ function FavoritesPage() {
         <div className="favorites-grid">
           {favorites.map((coffee) => (
             <div key={coffee._id} className="favorite-card">
-              {' '}
-              {/* Use _id here */}
               <img
                 src={coffee.imageUrl}
                 alt={coffee.name}
@@ -62,8 +60,6 @@ function FavoritesPage() {
                   <strong>Price:</strong> €{coffee.price}
                 </p>
                 <Link to={`/shop/${coffee._id}`} className="favorite-card-link">
-                  {' '}
-                  {/* Use _id here */}
                   View Details
                 </Link>
 
