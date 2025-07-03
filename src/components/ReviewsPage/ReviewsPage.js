@@ -2,6 +2,7 @@ import './ReviewsPage.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import StarRating from '../StarRating/StarRating';
+import Spinner from '../Spinner/Spinner';
 
 const ReviewsPage = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -11,16 +12,22 @@ const ReviewsPage = () => {
   const [message, setMessage] = useState('');
   const [showAllReviews, setShowAllReviews] = useState(false);
   const [title, setTitle] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Fetch testimonials from the backend when the component mounts
   useEffect(() => {
+    setLoading(true);
     axios
       .get('https://coffeeapp-firstsip.onrender.com/api/testimonials')
       .then((response) => {
         setTestimonials(response.data); // Store fetched testimonials
+        setLoading(false);
       })
       .catch((error) => {
         console.error('Error fetching testimonials:', error);
+        setError('Error fetching reviews');
+        setLoading(false);
       });
   }, []);
 
@@ -59,6 +66,9 @@ const ReviewsPage = () => {
   const toggleReviews = () => {
     setShowAllReviews((prev) => !prev);
   };
+
+  if (loading) return <Spinner />;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className="testimonials-page">

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './BestSellers.css';
 import { Link } from 'react-router-dom';
+import Spinner from '../Spinner/Spinner';
 
 function BestSellers() {
   const [coffees, setCoffees] = useState([]);
@@ -32,7 +33,7 @@ function BestSellers() {
     );
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner />;
   if (coffees.length === 0) return <p>No coffee data available.</p>;
 
   const currentCoffee = coffees[currentIndex];

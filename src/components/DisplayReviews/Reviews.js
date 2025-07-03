@@ -3,20 +3,26 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Reviews.css'; // Import custom CSS
 import './Reviews.css';
+import Spinner from '../Spinner/Spinner';
 
 const Reviews = () => {
   const [testimonials, setTestimonials] = useState([]);
-
+ const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   // Fetch testimonials data from the backend
   useEffect(() => {
+      setLoading(true);
     axios
       .get('https://coffeeapp-firstsip.onrender.com/api/testimonials')
       .then((response) => {
         console.log(response.data);
         setTestimonials(response.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error('Error fetching testimonials:', error);
+          setError('Error fetching testimonials');
+        setLoading(false);
       });
   }, []);
 
@@ -41,6 +47,9 @@ const Reviews = () => {
     }
     return stars;
   };
+
+  if (loading) return <Spinner />;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className="reviews-container">
