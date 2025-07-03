@@ -7,6 +7,7 @@ import coffeeImage from './img/coffeeBag.png';
 import coffeeHover from './img/koffie-b.png';
 import StarRating from '../StarRating/StarRating';
 import Select from 'react-select';
+import Spinner from '../Spinner/Spinner';
 
 function AllCoffees() {
   console.log('AllCoffees component loaded');
@@ -110,7 +111,7 @@ function AllCoffees() {
   const customSelectStyles = {
     control: (provided, state) => ({
       ...provided,
-
+      marginTop: '0',
       borderRadius: '20px',
       borderColor: state.isFocused ? '#8b5e3c;' : '#8b5e3c',
       boxShadow: state.isFocused ? '0 0 4px rgba(139, 94, 60, 0.5)' : 'none',
@@ -170,7 +171,7 @@ function AllCoffees() {
     [navigate]
   );
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner />;
   if (error) return <p>{error}</p>;
 
   return (
@@ -187,7 +188,7 @@ function AllCoffees() {
         />
       </div>
 
-      <h2>Coffee List</h2>
+      <h2 className="cofee-list">Coffee List</h2>
 
       {/* Filters */}
       <div className="filter-container">
