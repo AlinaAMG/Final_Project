@@ -61,12 +61,6 @@
   cursor: pointer;
 }
 
-.category-filter1,
-.region-filter,
-.price-filter {
-  flex: 1 1 200px;  
-  min-width: 180px;
-}
 
 .search-input::placeholder {
   color: #4b2e2a;
