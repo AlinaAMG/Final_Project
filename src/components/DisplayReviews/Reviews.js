@@ -59,7 +59,7 @@ const Reviews = () => {
               />
               <div>
                 <p className="user-name">{t.author}</p>
-                <p className="review-date">{t.date.slice(0, 10)}</p>{' '}
+                <p className="review-date">{t.date.slice(0, 10)}</p>
                 {/* Display date */}
               </div>
             </div>

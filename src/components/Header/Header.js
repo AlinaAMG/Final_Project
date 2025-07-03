@@ -1,6 +1,6 @@
-import { Link,NavLink,useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
- import DropboxUser from '../DropboxUser/DropboxUser';
+import DropboxUser from '../DropboxUser/DropboxUser';
 import './Header.css';
 import ThemeToggle from '../ToggleButtton/ToggleButton';
 
@@ -47,9 +47,8 @@ const Header = () => {
     window.addEventListener('storage', updateCartCount);
     window.addEventListener('cartUpdated', updateCartCount);
     window.addEventListener('favoritesUpdated', handleFavoritesChange);
-  })
+  });
 
-  
   const handleDropdownToggle = (menu) => {
     setIsDropdownOpen((prev) => (prev === menu ? null : menu));
   };
@@ -58,7 +57,6 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen); // Toggle the menu visibility
   };
 
-  
   return (
     <nav>
       <div className="promo-bar">
@@ -72,14 +70,14 @@ const Header = () => {
           First Sip <i className="bi bi-cup-hot-fill"></i>
         </Link>
       </div>
-  
+
       {/* Hamburger Icon */}
       <button className="hamburger-icon" onClick={toggleMenu}>
         <span className="hamburger-bar"></span>
         <span className="hamburger-bar"></span>
         <span className="hamburger-bar"></span>
       </button>
-  
+
       {/* Menu */}
       <div className={`menu ${isMenuOpen ? 'active' : ''}`}>
         {username?.trim() && token && (
@@ -87,57 +85,70 @@ const Header = () => {
         )}
         <ul>
           <li>
-            <NavLink to="/" exact activeClassName="active">Home</NavLink>
+            <NavLink to="/" exact activeClassName="active">
+              Home
+            </NavLink>
           </li>
-  
+
           <li>
-            {/* <button
-              className="drop-down"
+            <button
+              className={`drop-down ${
+                location.pathname.includes('/shop') ? 'active' : ''
+              }`} // Add active class conditionally
               onClick={() => handleDropdownToggle('shop')}
             >
               Shop
-            </button> */}
-
-            <button
-      className={`drop-down ${location.pathname.includes('/shop') ? 'active' : ''}`} // Add active class conditionally
-      onClick={() => handleDropdownToggle('shop')}
-    >
-      Shop
-    </button>
+            </button>
             {isDropdownOpen === 'shop' && (
               <ul>
                 <li>
-                  <NavLink to="/shop/all-coffees" activeClassName="active">All Coffees</NavLink>
+                  <NavLink to="/shop/all-coffees" activeClassName="active">
+                    All Coffees
+                  </NavLink>
                 </li>
-  
+
                 <li>
-                  <NavLink to="/coffee-box"  activeClassName="active">Coffee Box</NavLink>
+                  <NavLink to="/coffee-box" activeClassName="active">
+                    Coffee Box
+                  </NavLink>
                 </li>
               </ul>
             )}
           </li>
-  
+
           <li>
-            <NavLink to="/our-origins"  activeClassName="active">Our Origins</NavLink>
+            <NavLink to="/our-origins" activeClassName="active">
+              Our Origins
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/quiz"  activeClassName="active">Coffee Quiz</NavLink>
+            <NavLink to="/quiz" activeClassName="active">
+              Coffee Quiz
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/reviews"  activeClassName="active">Customer Stories</NavLink>
+            <NavLink to="/reviews" activeClassName="active">
+              Customer Stories
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/blog"  activeClassName="active">Coffee Blog</NavLink>
+            <NavLink to="/blog" activeClassName="active">
+              Coffee Blog
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/about"  activeClassName="active">Our Story</NavLink>
+            <NavLink to="/about" activeClassName="active">
+              Our Story
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/contact"  activeClassName="active">Contact</NavLink>
+            <NavLink to="/contact" activeClassName="active">
+              Contact
+            </NavLink>
           </li>
-  
+
           <li>
-            <NavLink to="/favorites"  activeClassName="active">
+            <NavLink to="/favorites" activeClassName="active">
               <span className="favorites-icon">
                 <svg
                   width="24"
@@ -147,14 +158,12 @@ const Header = () => {
                 >
                   <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                 </svg>
-                {hasFavorites && (
-                  <span className="favorites-count">★</span>
-                )}
+                {hasFavorites && <span className="favorites-count">★</span>}
               </span>
             </NavLink>
           </li>
           <li>
-            <NavLink to="/cart"  activeClassName="active">
+            <NavLink to="/cart" activeClassName="active">
               <span className="cart-icon">
                 <svg
                   width="24"
@@ -170,13 +179,12 @@ const Header = () => {
               </span>
             </NavLink>
           </li>
-  
-         
+
           {/* User Dropdown */}
           <li className="menu-user-dropdown mobile-only">
             <button
               className="drop-down"
-              onClick={() => handleDropdownToggle("user")}
+              onClick={() => handleDropdownToggle('user')}
             >
               <span className="login-icon">
                 <svg
@@ -189,7 +197,7 @@ const Header = () => {
                 </svg>
               </span>
             </button>
-            {isDropdownOpen === "user" && (
+            {isDropdownOpen === 'user' && (
               <div className="dropdown-wrapper">
                 {/* If user is not logged in, show login/register options */}
                 {!username && !token ? (
@@ -214,10 +222,10 @@ const Header = () => {
           <DropboxUser />
         </div>
       </div>
-      
+
       <ThemeToggle />
     </nav>
   );
-}
+};
 
 export default Header;

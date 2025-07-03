@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaShoppingBasket, FaTrash } from 'react-icons/fa';
 import './Cart.css';
@@ -13,44 +13,50 @@ function CartPage() {
     setCartItems(storedCart);
   }, []);
 
-  const handleQuantityChange = (index, newQuantity) => {
-    const updatedCart = [...cartItems];
-    updatedCart[index].quantity = parseInt(newQuantity);
-    setCartItems(updatedCart);
+  const handleQuantityChange = useCallback(
+    (index, newQuantity) => {
+      const updatedCart = [...cartItems];
+      updatedCart[index].quantity = parseInt(newQuantity);
+      setCartItems(updatedCart);
 
-    // Save updated cart in localStorage
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+      // Save updated cart in localStorage
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
 
-    // Update cart count in localStorage
-    const updatedCartCount = updatedCart.reduce(
-      (acc, item) => acc + item.quantity,
-      0
-    );
-    localStorage.setItem('cartCount', updatedCartCount);
+      // Update cart count in localStorage
+      const updatedCartCount = updatedCart.reduce(
+        (acc, item) => acc + item.quantity,
+        0
+      );
+      localStorage.setItem('cartCount', updatedCartCount);
 
-    // Dispatch event to update navbar cart count
-    window.dispatchEvent(new Event('cartUpdated'));
-  };
+      // Dispatch event to update navbar cart count
+      window.dispatchEvent(new Event('cartUpdated'));
+    },
+    [cartItems]
+  );
 
-  const handleDelete = (index) => {
-    const updatedCart = cartItems.filter((_, i) => i !== index);
-    setCartItems(updatedCart);
+  const handleDelete = useCallback(
+    (index) => {
+      const updatedCart = cartItems.filter((_, i) => i !== index);
+      setCartItems(updatedCart);
 
-    // Save the updated cart in localStorage
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+      // Save the updated cart in localStorage
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
 
-    // Update cart count in localStorage after deleting an item
-    const updatedCartCount = updatedCart.reduce(
-      (acc, item) => acc + item.quantity,
-      0
-    );
-    localStorage.setItem('cartCount', updatedCartCount);
+      // Update cart count in localStorage after deleting an item
+      const updatedCartCount = updatedCart.reduce(
+        (acc, item) => acc + item.quantity,
+        0
+      );
+      localStorage.setItem('cartCount', updatedCartCount);
 
-    // Dispatch event to notify that the cart has been updated
-    window.dispatchEvent(new Event('cartUpdated'));
-  };
+      // Dispatch event to notify that the cart has been updated
+      window.dispatchEvent(new Event('cartUpdated'));
+    },
+    [cartItems]
+  );
 
-  const getTotalPrice = () => {
+  const getTotalPrice = useCallback(() => {
     return cartItems
       .reduce((total, item) => {
         const isSubscription = item.type === 'subscription';
@@ -66,17 +72,27 @@ function CartPage() {
         }
       }, 0)
       .toFixed(2);
-  };
+  },[cartItems]);
 
-  const handleClick = () => {
+
+  const handleClick = useCallback(() => {
     // you could add logic here first
     navigate('/check-out');
-  };
+  }, [navigate]);
 
   // Calculate shipping fee
-  const totalPrice = parseFloat(getTotalPrice());
-  const shippingFee = totalPrice >= 39.99 ? 0 : 4.99;
-  const totalWithShipping = totalPrice + shippingFee;
+  const totalPrice = useMemo(
+    () => parseFloat(getTotalPrice()),
+    [getTotalPrice]
+  );
+  const shippingFee = useMemo(
+    () => (totalPrice >= 39.99 ? 0 : 4.99),
+    [totalPrice]
+  );
+  const totalWithShipping = useMemo(
+    () => totalPrice + shippingFee,
+    [shippingFee, totalPrice]
+  );
 
   if (cartItems.length === 0) {
     return (

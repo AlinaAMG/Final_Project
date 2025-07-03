@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LogIn from '../../components/LogIn/LogIn';
@@ -12,31 +12,35 @@ function RegisterPage() {
     setIsLogin((prev) => !prev);
   };
 
-  const handleLogin = async (user) => {
-    try {
-      const response = await axios.post(
-        'https://coffeeapp-firstsip.onrender.com/api/auth/signin',
-        user
-      );
-      const { token, user: loggedInUser } = response.data;
-      console.log(response.data.user);
-      localStorage.setItem('username', loggedInUser.name);
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(loggedInUser));
+  const handleLogin = useCallback(
+    async (user) => {
+      try {
+        const response = await axios.post(
+          'https://coffeeapp-firstsip.onrender.com/api/auth/signin',
+          user
+        );
+        console.log('login payload', user);
+        const { token, user: loggedInUser } = response.data;
+        console.log(response.data.user);
+        localStorage.setItem('username', loggedInUser.name);
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(loggedInUser));
 
-      if (loggedInUser.role === 'ADMIN') {
-        console.log(loggedInUser);
-        localStorage.setItem('admin', JSON.stringify(loggedInUser));
-        navigate('/dashboard');
-      } else navigate('/');
-    } catch (error) {
-      alert(
-        'Login failed: ' + (error.response?.data?.message || error.message)
-      );
-    }
-  };
+        if (loggedInUser.role === 'ADMIN') {
+          console.log(loggedInUser);
+          localStorage.setItem('admin', JSON.stringify(loggedInUser));
+          navigate('/dashboard');
+        } else navigate('/');
+      } catch (error) {
+        alert(
+          'Login failed: ' + (error.response?.data?.message || error.message)
+        );
+      }
+    },
+    [navigate]
+  );
 
-  const handleSignUp = async (user) => {
+  const handleSignUp = useCallback(async (user) => {
     try {
       await axios.post(
         'https://coffeeapp-firstsip.onrender.com/api/auth/signup',
@@ -50,7 +54,7 @@ function RegisterPage() {
           (error.response?.data?.message || error.message)
       );
     }
-  };
+  }, []);
 
   return (
     <div className="register-wrap">

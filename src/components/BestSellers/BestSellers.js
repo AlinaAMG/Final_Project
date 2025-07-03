@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './BestSellers.css';
 import { Link } from 'react-router-dom';
-
 
 function BestSellers() {
   const [coffees, setCoffees] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     axios
       .get('https://coffeeapp-firstsip.onrender.com/api/coffees/best-sellers')
@@ -22,8 +21,6 @@ function BestSellers() {
         setLoading(false);
       });
   }, []);
-
-  
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % coffees.length);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaSearch } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
@@ -95,16 +95,17 @@ function AllCoffees() {
     setFilteredCoffees(filtered);
   }, [coffees, selectedCategory, selectedPriceRange, searchTerm]);
 
-  const handleCategoryChange = (e) => {
+  const handleCategoryChange = useCallback((e) => {
     const selected = e.target.value;
     setSelectedCategory(selected);
-  };
+  }, []);
 
-  const handlePriceChange = (e) => {
+  const handlePriceChange = useCallback((e) => {
     const selected = e.target.value;
     setSelectedPriceRange(selected);
     // applyFilters(selectedCategory, selected);
-  };
+  }, []);
+
   //  Add styles to the Select
   const customSelectStyles = {
     control: (provided, state) => ({
@@ -146,25 +147,31 @@ function AllCoffees() {
     }),
   };
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = useCallback((e) => {
     setSearchTerm(e.target.value);
-  };
+  }, []);
 
-  const handleSearchKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      setSearchTerm(searchInput); // ✅ triggers useEffect
-      setSearchInput(''); // ✅ clears the field
-    }
-  };
+  const handleSearchKeyDown = useCallback(
+    (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        setSearchTerm(searchInput); // ✅ triggers useEffect
+        setSearchInput(''); // ✅ clears the field
+      }
+    },
+    [searchInput]
+  );
+
+  // Function to handle the redirection to coffee details
+  const redirectToDetails = useCallback(
+    (coffeeId) => {
+      navigate(`/shop/${coffeeId}`);
+    },
+    [navigate]
+  );
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
-
-  // Function to handle the redirection to coffee details
-  const redirectToDetails = (coffeeId) => {
-    navigate(`/shop/${coffeeId}`);
-  };
 
   return (
     <div className="container" style={{ backgroundColor: '#fff' }}>

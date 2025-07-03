@@ -35,6 +35,47 @@ function CoffeeDetail() {
       });
   }, [id]);
 
+  
+  useEffect(() => {
+    if (!coffee) return;
+
+    const stored = JSON.parse(localStorage.getItem('favorites')) || [];
+    const exists = stored.some((fav) => fav._id === coffee._id);
+    setIsFavorite(exists);
+  }, [coffee]);
+
+  const handleAddToFavorites = () => {
+    const currentFavorites =
+      JSON.parse(localStorage.getItem('favorites')) || [];
+    const isAlreadyFavorite = currentFavorites.some(
+      (fav) => fav._id === coffee._id
+    );
+    let updatedFavorites;
+
+    if (isAlreadyFavorite) {
+      updatedFavorites = currentFavorites.filter(
+        (fav) => fav._id !== coffee._id
+      );
+      setIsFavorite(false);
+      alert('Removed from favorites!');
+    } else {
+      updatedFavorites = [
+        ...currentFavorites,
+        {
+          _id: coffee._id,
+          name: coffee.name,
+          imageUrl: coffee.imageUrl,
+          price: coffee.price,
+        },
+      ];
+      setIsFavorite(true);
+      alert('Added to favorites!');
+    }
+
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    window.dispatchEvent(new Event('favoritesUpdated'));
+  };
+
   const handleWeightChange = (e) => setSelectedWeight(e.target.value);
   const handleRoastChange = (e) => setSelectedRoast(e.target.value);
   const handleBeanTypeChange = (e) => setSelectedBeanType(e.target.value); // Handler for bean type dropdown
@@ -88,44 +129,6 @@ function CoffeeDetail() {
     alert('Item added to the cart!');
   };
 
-  useEffect(() => {
-    if (!coffee) return;
-
-    const stored = JSON.parse(localStorage.getItem('favorites')) || [];
-    const exists = stored.some((fav) => fav._id === coffee._id);
-    setIsFavorite(exists);
-  }, [coffee]);
-
-  const handleAddToFavorites = () => {
-    const currentFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    const isAlreadyFavorite = currentFavorites.some(
-      (fav) => fav._id === coffee._id
-    );
-    let updatedFavorites;
-
-    if (isAlreadyFavorite) {
-      updatedFavorites = currentFavorites.filter(
-        (fav) => fav._id !== coffee._id
-      );
-      setIsFavorite(false);
-      alert('Removed from favorites!');
-    } else {
-      updatedFavorites = [
-        ...currentFavorites,
-        {
-          _id: coffee._id,
-          name: coffee.name,
-          imageUrl: coffee.imageUrl,
-          price: coffee.price,
-        },
-      ];
-      setIsFavorite(true);
-      alert('Added to favorites!');
-    }
-
-    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-    window.dispatchEvent(new Event('favoritesUpdated'));
-  };
 
   if (loading) return <p>Loading...</p>;
   if (!coffee) return <p>Coffee not found</p>;
