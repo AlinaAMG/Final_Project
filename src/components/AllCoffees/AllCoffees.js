@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaSearch } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import  './AllCoffees.css';
+import './AllCoffees.css';
 import coffeeImage from './img/coffeeBag.png';
 import coffeeHover from './img/koffie-b.png';
 import StarRating from '../StarRating/StarRating';
@@ -139,8 +139,8 @@ function AllCoffees() {
       backgroundColor: state.isSelected
         ? '#0d6efd'
         : state.isFocused
-          ? '  #0d6efd'
-          : '#f5f0e6', // default background
+        ? '  #0d6efd'
+        : '#f5f0e6', // default background
       color: state.isSelected ? '#fff' : state.isFocused ? '#fff' : '#4b2e2a',
       cursor: 'pointer',
       padding: '10px 12px',
@@ -192,9 +192,14 @@ function AllCoffees() {
       {/* Filters */}
       <div className="filter-container">
         <div className="category-filter1">
-          <label className="label">Filter by Category:</label>
-          <select id="category-filter" onChange={handleCategoryChange}>
-            <option value="">All Categories</option>
+          <select
+            id="category-filter"
+            onChange={handleCategoryChange}
+            defaultValue=""
+          >
+            <option value="" disabled hidden>
+              Filter by Category
+            </option>
             <option value="Single Origin">Single Origin</option>
             <option value="Organic">Organic</option>
             <option value="Premium Blends">Premium Blends</option>
@@ -202,7 +207,6 @@ function AllCoffees() {
         </div>
 
         <div className="region-filter">
-          <label className="label">Filter by Country:</label>
           <Select
             styles={customSelectStyles}
             options={countryOptions}
@@ -211,14 +215,20 @@ function AllCoffees() {
               setSelectedCountryOption(selectedOption);
               setRegion(selectedOption?.value || '');
             }}
-            placeholder="Select a country..."
+            placeholder="Filter by Country..."
+            isClearable
           />
         </div>
 
         <div className="price-filter">
-          <label className="label">Filter by Price:</label>
-          <select id="price-filter" onChange={handlePriceChange}>
-            <option value="">All Prices</option>
+          <select
+            id="price-filter"
+            onChange={handlePriceChange}
+            defaultValue=""
+          >
+            <option value="" disabled hidden>
+              Filter by Price
+            </option>
             <option value="0-20">€0 – €20</option>
             <option value="20-40">€20 – €40</option>
             <option value="40-60">€40 – €60</option>
