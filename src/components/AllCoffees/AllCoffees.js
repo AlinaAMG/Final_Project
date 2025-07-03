@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaSearch } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import styles from './AllCoffees.module.css';
+import  './AllCoffees.css';
 import coffeeImage from './img/coffeeBag.png';
 import coffeeHover from './img/koffie-b.png';
 import StarRating from '../StarRating/StarRating';
@@ -139,8 +139,8 @@ function AllCoffees() {
       backgroundColor: state.isSelected
         ? '#0d6efd'
         : state.isFocused
-        ? '  #0d6efd'
-        : '#f5f0e6', // default background
+          ? '  #0d6efd'
+          : '#f5f0e6', // default background
       color: state.isSelected ? '#fff' : state.isFocused ? '#fff' : '#4b2e2a',
       cursor: 'pointer',
       padding: '10px 12px',
@@ -174,24 +174,25 @@ function AllCoffees() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className={styles.container} style={{ backgroundColor: '#fff' }}>
-      <div className={styles['search-container']}>
-        <FaSearch className={styles['search-icon']} />
+    <div className="container" style={{ backgroundColor: '#fff' }}>
+      <div className="search-container">
+        <FaSearch className="search-icon" />
         <input
           type="text"
           placeholder="Search by coffee name..."
           value={searchTerm}
           onChange={handleSearchChange}
           onKeyDown={handleSearchKeyDown}
-          className={styles['search-input']}
+          className="search-input"
         />
       </div>
+
       <h2>Coffee List</h2>
 
       {/* Filters */}
-      <div className={styles['filter-container']}>
-        <div className={styles['category-filter1']}>
-          <label className={styles.label}>Filter by Category:</label>
+      <div className="filter-container">
+        <div className="category-filter1">
+          <label className="label">Filter by Category:</label>
           <select id="category-filter" onChange={handleCategoryChange}>
             <option value="">All Categories</option>
             <option value="Single Origin">Single Origin</option>
@@ -199,10 +200,9 @@ function AllCoffees() {
             <option value="Premium Blends">Premium Blends</option>
           </select>
         </div>
-        {/* Filter by the country of region */}
 
-        <div className={styles['region-filter']}>
-          <label className={styles.label}>Filter by Country:</label>
+        <div className="region-filter">
+          <label className="label">Filter by Country:</label>
           <Select
             styles={customSelectStyles}
             options={countryOptions}
@@ -215,8 +215,8 @@ function AllCoffees() {
           />
         </div>
 
-        <div className={styles['price-filter']}>
-          <label className={styles.label}>Filter by Price:</label>
+        <div className="price-filter">
+          <label className="label">Filter by Price:</label>
           <select id="price-filter" onChange={handlePriceChange}>
             <option value="">All Prices</option>
             <option value="0-20">€0 – €20</option>
@@ -226,29 +226,29 @@ function AllCoffees() {
         </div>
       </div>
 
-      <div className={styles['coffee-cards']}>
+      <div className="coffee-cards">
         {filteredCoffees.length === 0 ? (
-          <p className={styles['no-results']}>
+          <p className="no-results">
             ❌ No coffees found for the selected category and price range.
           </p>
         ) : (
           filteredCoffees.map((coffee) => (
-            <div key={coffee._id} className={styles['coffee-card']}>
+            <div key={coffee._id} className="coffee-card">
               <Link to={`/shop/${coffee._id}`}>
-                <div className={styles['image-container']}>
+                <div className="image-container">
                   <img
                     src={coffeeImage}
                     alt={coffee.name}
-                    className={styles['default-img']}
+                    className="default-img"
                   />
                   <img
                     src={coffeeHover}
                     alt={coffee.name}
-                    className={styles['hover-img']}
+                    className="hover-img"
                   />
                 </div>
               </Link>
-              <h2 className={styles.title}>{coffee.name}</h2>
+              <h2 className="title">{coffee.name}</h2>
               <p>
                 <strong>Category: </strong>
                 {coffee.category}
@@ -256,30 +256,27 @@ function AllCoffees() {
               <p>
                 <strong>Price:</strong> &euro;{coffee.price}
               </p>
-              <div className={styles['coffee-rating']}>
+              <div className="coffee-rating">
                 <StarRating rating={coffee.rating} />
               </div>
 
-              <p className={styles.description}>
+              <p className="description">
                 <strong>Description:</strong>{' '}
                 {coffee?.description?.split(' ').slice(0, 5).join(' ')}
-                <Link
-                  className={styles['read-more']}
-                  to={`/shop/${coffee._id}`}
-                >
+                <Link className="read-more" to={`/shop/${coffee._id}`}>
                   <i className="bi bi-arrow-right"></i>
                 </Link>
               </p>
 
               {coffee.soldOut && (
-                <div className={styles['sold-out-overlay']}>
+                <div className="sold-out-overlay">
                   <span>Sold Out</span>
                 </div>
               )}
 
               {!coffee.soldOut && (
                 <button
-                  className={styles['btn-all-coffees']}
+                  className="btn-all-coffees"
                   onClick={() => redirectToDetails(coffee._id)}
                 >
                   Add To Cart
@@ -292,5 +289,4 @@ function AllCoffees() {
     </div>
   );
 }
-
 export default AllCoffees;

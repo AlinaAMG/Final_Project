@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaShoppingBasket, FaTrash } from 'react-icons/fa';
-import styles from './Cart.module.css';
+import './Cart.css';
 
 function CartPage() {
   const [cartItems, setCartItems] = useState([]);
@@ -95,52 +95,54 @@ function CartPage() {
 
   if (cartItems.length === 0) {
     return (
-      <div className={styles['cart-empty']}>
+      <div className="cart-empty">
         <FaShoppingBasket size={120} color="#ccc" />
         <h2>Your cart is currently empty</h2>
-        <Link to="/shop/all-coffees" className={styles['btn-back']}>
+        <Link to="/shop/all-coffees" className="btn-back">
           Go back to shop
         </Link>
       </div>
     );
   }
+
   return (
     <div>
-      <h2 className={styles.title}>Shopping Cart</h2>
-      <div className={styles['cart-wrapper']}>
-        <div className={styles['cart-items']}>
+      <h2>Shopping Cart</h2>
+      <div className="cart-wrapper">
+        <div className="cart-items">
           {cartItems.map((item, index) => {
             const isSubscription = item.type === 'subscription';
 
+            const imageUrl = isSubscription
+              ? item.imageUrl || 'path/to/placeholder.jpg'
+              : item.coffee?.imageUrl || 'path/to/placeholder.jpg';
+
+            const name = isSubscription
+              ? item.name
+              : item.coffee?.name || 'Coffee';
+
+            const weight = isSubscription
+              ? `${item.weight}g`
+              : item.selectedWeight;
+
+            const price = isSubscription
+              ? (item.price * item.quantity).toFixed(2)
+              : (
+                  item.coffee?.price *
+                  (item.selectedWeight === '1000g' ? 4 : 1) *
+                  item.quantity
+                ).toFixed(2);
+
             return (
-              <div className={styles['cart-item']} key={index}>
-                <img
-                  src={
-                    isSubscription
-                      ? !item.imageUrl
-                        ? 'path/to/placeholder.jpg'
-                        : item.imageUrl
-                      : !item.coffee?.imageUrl
-                      ? 'path/to/placeholder.jpg'
-                      : item.coffee?.imageUrl
-                  }
-                  alt={
-                    isSubscription
-                      ? item.name || 'Coffee Box'
-                      : item.coffee?.name || 'Coffee'
-                  }
-                  className={styles['cart-item-img']}
-                />
+              <div className="cart-item" key={index}>
+                <img src={imageUrl} alt={name} className="cart-item-img" />
 
-                <div className={styles['cart-item-info']}>
-                  <h4>{isSubscription ? item.name : item.coffee?.name}</h4>
+                <div className="cart-item-info">
+                  <h4>{name}</h4>
 
-                  <p>
-                    Weight:{' '}
-                    {isSubscription ? `${item.weight}g` : item.selectedWeight}
-                  </p>
+                  <p>Weight: {weight}</p>
 
-                  <p className={styles.qty}>
+                  <p className="qty">
                     Quantity:
                     <select
                       value={item.quantity}
@@ -156,19 +158,10 @@ function CartPage() {
                     </select>
                   </p>
 
-                  <p>
-                    Price: €
-                    {isSubscription
-                      ? (item.price * item.quantity).toFixed(2)
-                      : (
-                          item.coffee?.price *
-                          (item.selectedWeight === '1000g' ? 4 : 1) *
-                          item.quantity
-                        ).toFixed(2)}
-                  </p>
+                  <p>Price: €{price}</p>
 
                   <button
-                    className={styles['delete-btn']}
+                    className="delete-btn"
                     onClick={() => handleDelete(index)}
                   >
                     <FaTrash />
@@ -179,33 +172,33 @@ function CartPage() {
           })}
         </div>
 
-        <div className={styles['cart-summary']}>
-          <div className={styles.price}>
+        <div className="cart-summary">
+          <div className="price">
             <h4>Total</h4>
             <h5>€{getTotalPrice()}</h5>
           </div>
 
-          <div className={styles.shipping}>
+          <div className="shipping">
             <h3>Shipping:</h3>
             <h5>
               {shippingFee === 0
                 ? 'Free Shipping'
-                : ` €${shippingFee.toFixed(2)}`}
+                : `€${shippingFee.toFixed(2)}`}
             </h5>
           </div>
 
-          <div className={styles.total}>
+          <div className="total">
             <h4>Total with Shipping:</h4>
             <h5>
               <strong>€{totalWithShipping.toFixed(2)}</strong>
             </h5>
           </div>
 
-          <div className={styles['cart-actions']}>
-            <Link to="/shop/all-coffees" className={styles['btn-back']}>
+          <div className="cart-actions">
+            <Link to="/shop/all-coffees" className="btn-back">
               Continue Shopping
             </Link>
-            <button onClick={handleClick} className={styles['btn-purchase']}>
+            <button onClick={handleClick} className="btn-purchase">
               Proceed to checkout
             </button>
           </div>
