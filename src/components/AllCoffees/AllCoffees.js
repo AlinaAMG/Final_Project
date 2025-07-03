@@ -174,7 +174,7 @@ function AllCoffees() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="container" style={{ backgroundColor: '#fff' }}>
+    <div className="container-coffee" style={{ backgroundColor: '#fff' }}>
       <div className="search-container">
         <FaSearch className="search-icon" />
         <input
