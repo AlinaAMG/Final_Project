@@ -188,8 +188,6 @@ function AllCoffees() {
         />
       </div>
 
-      <h2 className="cofee-list">Coffee List</h2>
-
       {/* Filters */}
       <div className="filter-container">
         <div className="category-filter1">
