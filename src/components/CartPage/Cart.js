@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaShoppingBasket, FaTrash } from 'react-icons/fa';
-import './Cart.css';
+import styles from './Cart.module.css';
 
 function CartPage() {
   const [cartItems, setCartItems] = useState([]);
@@ -72,8 +72,7 @@ function CartPage() {
         }
       }, 0)
       .toFixed(2);
-  },[cartItems]);
-
+  }, [cartItems]);
 
   const handleClick = useCallback(() => {
     // you could add logic here first
@@ -96,26 +95,25 @@ function CartPage() {
 
   if (cartItems.length === 0) {
     return (
-      <div className="cart-empty">
+      <div className={styles['cart-empty']}>
         <FaShoppingBasket size={120} color="#ccc" />
         <h2>Your cart is currently empty</h2>
-        <Link to="/shop/all-coffees" className="btn-back">
+        <Link to="/shop/all-coffees" className={styles['btn-back']}>
           Go back to shop
         </Link>
       </div>
     );
   }
-
   return (
     <div>
-      <h2>Shopping Cart</h2>
-      <div className="cart-wrapper">
-        <div className="cart-items">
+      <h2 className={styles.title}>Shopping Cart</h2>
+      <div className={styles['cart-wrapper']}>
+        <div className={styles['cart-items']}>
           {cartItems.map((item, index) => {
             const isSubscription = item.type === 'subscription';
 
             return (
-              <div className="cart-item" key={index}>
+              <div className={styles['cart-item']} key={index}>
                 <img
                   src={
                     isSubscription
@@ -131,10 +129,10 @@ function CartPage() {
                       ? item.name || 'Coffee Box'
                       : item.coffee?.name || 'Coffee'
                   }
-                  className="cart-item-img"
+                  className={styles['cart-item-img']}
                 />
 
-                <div className="cart-item-info">
+                <div className={styles['cart-item-info']}>
                   <h4>{isSubscription ? item.name : item.coffee?.name}</h4>
 
                   <p>
@@ -142,7 +140,7 @@ function CartPage() {
                     {isSubscription ? `${item.weight}g` : item.selectedWeight}
                   </p>
 
-                  <p className="qty">
+                  <p className={styles.qty}>
                     Quantity:
                     <select
                       value={item.quantity}
@@ -170,7 +168,7 @@ function CartPage() {
                   </p>
 
                   <button
-                    className="delete-btn"
+                    className={styles['delete-btn']}
                     onClick={() => handleDelete(index)}
                   >
                     <FaTrash />
@@ -180,14 +178,14 @@ function CartPage() {
             );
           })}
         </div>
-        <div className="cart-summary">
-          <div className="price">
+
+        <div className={styles['cart-summary']}>
+          <div className={styles.price}>
             <h4>Total</h4>
             <h5>€{getTotalPrice()}</h5>
           </div>
 
-          {/* Shipping fee section */}
-          <div className="shipping">
+          <div className={styles.shipping}>
             <h3>Shipping:</h3>
             <h5>
               {shippingFee === 0
@@ -196,17 +194,18 @@ function CartPage() {
             </h5>
           </div>
 
-          <div className="total">
+          <div className={styles.total}>
             <h4>Total with Shipping:</h4>
             <h5>
               <strong>€{totalWithShipping.toFixed(2)}</strong>
             </h5>
           </div>
-          <div className="cart-actions">
-            <Link to="/shop/all-coffees" className="btn-back">
+
+          <div className={styles['cart-actions']}>
+            <Link to="/shop/all-coffees" className={styles['btn-back']}>
               Continue Shopping
             </Link>
-            <button onClick={handleClick} className="btn-purchase">
+            <button onClick={handleClick} className={styles['btn-purchase']}>
               Proceed to checkout
             </button>
           </div>

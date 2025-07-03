@@ -73,29 +73,27 @@
 }
 
 
-.submit-btn {
+.submit-btn-quiz {
   padding: 12px 30px;
   background-color: #4b2e2a;
   color: white;
   border: none;
-  border-radius: 25px;
+  border-radius: 30px;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1rem;
   transition: background-color 0.3s;
   margin: 30px auto 10px;
-  width: 200px;
+ 
 }
 
-.submit-btn:disabled {
+.submit-btn-quiz:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
 
-.submit-btn:hover:not(:disabled) {
+.submit-btn-quiz:hover:not(:disabled) {
   background-color: #6f3d35;
 }
-
-
 
 .result{
   width:80%;

@@ -227,7 +227,7 @@ const CoffeeQuiz = () => {
                 name="question1"
                 value="Fruity and bright"
                 onChange={handleAnswerChange}
-              />{' '}
+              />
               Fruity and bright
             </label>
             <label>
@@ -236,7 +236,7 @@ const CoffeeQuiz = () => {
                 name="question1"
                 value="Smooth and well-balanced"
                 onChange={handleAnswerChange}
-              />{' '}
+              />
               Smooth and well-balanced
             </label>
             <label>
@@ -322,7 +322,7 @@ const CoffeeQuiz = () => {
                 name="question3"
                 value="Pour-over"
                 onChange={handleAnswerChange}
-              />{' '}
+              />
               Pour-over
             </label>
             <label>
@@ -331,7 +331,7 @@ const CoffeeQuiz = () => {
                 name="question3"
                 value="Drip coffee maker"
                 onChange={handleAnswerChange}
-              />{' '}
+              />
               Drip coffee maker
             </label>
           </div>
@@ -347,7 +347,7 @@ const CoffeeQuiz = () => {
                 name="question4"
                 value="Very sensitive"
                 onChange={handleAnswerChange}
-              />{' '}
+              />
               Very sensitive
             </label>
 
@@ -357,7 +357,7 @@ const CoffeeQuiz = () => {
                 name="question4"
                 value="Somewhat sensitive"
                 onChange={handleAnswerChange}
-              />{' '}
+              />
               Somewhat sensitive
             </label>
 
@@ -367,7 +367,7 @@ const CoffeeQuiz = () => {
                 name="question4"
                 value="Not sensitive at all"
                 onChange={handleAnswerChange}
-              />{' '}
+              />
               Not sensitive at all
             </label>
           </div>
@@ -385,7 +385,7 @@ const CoffeeQuiz = () => {
                 name="question5"
                 value="I want to try something new and adventurous"
                 onChange={handleAnswerChange}
-              />{' '}
+              />
               Adventurous
             </label>
             <label>
@@ -394,13 +394,13 @@ const CoffeeQuiz = () => {
                 name="question5"
                 value="I prefer classic and safe options"
                 onChange={handleAnswerChange}
-              />{' '}
+              />
               Classic
             </label>
           </div>
         </div>
 
-        <button type="submit" disabled={loading} className="submit-btn">
+        <button type="submit" disabled={loading} className="submit-btn-quiz">
           {loading ? 'Loading...' : 'Submit'}
         </button>
       </form>

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaSearch } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import './AllCoffees.css';
+import styles from './AllCoffees.module.css';
 import coffeeImage from './img/coffeeBag.png';
 import coffeeHover from './img/koffie-b.png';
 import StarRating from '../StarRating/StarRating';
@@ -174,24 +174,24 @@ function AllCoffees() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="container" style={{ backgroundColor: '#fff' }}>
-      <div className="search-container">
-        <FaSearch className="search-icon" />
+    <div className={styles.container} style={{ backgroundColor: '#fff' }}>
+      <div className={styles['search-container']}>
+        <FaSearch className={styles['search-icon']} />
         <input
           type="text"
           placeholder="Search by coffee name..."
           value={searchTerm}
           onChange={handleSearchChange}
           onKeyDown={handleSearchKeyDown}
-          className="search-input"
+          className={styles['search-input']}
         />
       </div>
       <h2>Coffee List</h2>
 
       {/* Filters */}
-      <div className="filter-container">
-        <div className="category-filter1">
-          <label className="label">Filter by Category:</label>
+      <div className={styles['filter-container']}>
+        <div className={styles['category-filter1']}>
+          <label className={styles.label}>Filter by Category:</label>
           <select id="category-filter" onChange={handleCategoryChange}>
             <option value="">All Categories</option>
             <option value="Single Origin">Single Origin</option>
@@ -200,8 +200,9 @@ function AllCoffees() {
           </select>
         </div>
         {/* Filter by the country of region */}
-        <div className="region-filter">
-          <label className="label">Filter by Country:</label>
+
+        <div className={styles['region-filter']}>
+          <label className={styles.label}>Filter by Country:</label>
           <Select
             styles={customSelectStyles}
             options={countryOptions}
@@ -213,8 +214,9 @@ function AllCoffees() {
             placeholder="Select a country..."
           />
         </div>
-        <div className="price-filter">
-          <label className="label">Filter by Price:</label>
+
+        <div className={styles['price-filter']}>
+          <label className={styles.label}>Filter by Price:</label>
           <select id="price-filter" onChange={handlePriceChange}>
             <option value="">All Prices</option>
             <option value="0-20">€0 – €20</option>
@@ -224,29 +226,29 @@ function AllCoffees() {
         </div>
       </div>
 
-      <div className="coffee-cards">
+      <div className={styles['coffee-cards']}>
         {filteredCoffees.length === 0 ? (
-          <p className="no-results">
+          <p className={styles['no-results']}>
             ❌ No coffees found for the selected category and price range.
           </p>
         ) : (
           filteredCoffees.map((coffee) => (
-            <div key={coffee._id} className="coffee-card">
+            <div key={coffee._id} className={styles['coffee-card']}>
               <Link to={`/shop/${coffee._id}`}>
-                <div className="image-container">
+                <div className={styles['image-container']}>
                   <img
                     src={coffeeImage}
                     alt={coffee.name}
-                    className="default-img"
+                    className={styles['default-img']}
                   />
                   <img
                     src={coffeeHover}
                     alt={coffee.name}
-                    className="hover-img"
+                    className={styles['hover-img']}
                   />
                 </div>
               </Link>
-              <h2 className="title">{coffee.name}</h2>
+              <h2 className={styles.title}>{coffee.name}</h2>
               <p>
                 <strong>Category: </strong>
                 {coffee.category}
@@ -254,29 +256,30 @@ function AllCoffees() {
               <p>
                 <strong>Price:</strong> &euro;{coffee.price}
               </p>
-              <div className="coffee-rating">
+              <div className={styles['coffee-rating']}>
                 <StarRating rating={coffee.rating} />
               </div>
 
-              <p className="description">
+              <p className={styles.description}>
                 <strong>Description:</strong>{' '}
                 {coffee?.description?.split(' ').slice(0, 5).join(' ')}
-                <Link className="read-more" to={`/shop/${coffee._id}`}>
+                <Link
+                  className={styles['read-more']}
+                  to={`/shop/${coffee._id}`}
+                >
                   <i className="bi bi-arrow-right"></i>
                 </Link>
               </p>
 
-              {/* This overlay should only be inside each individual card */}
               {coffee.soldOut && (
-                <div className="sold-out-overlay">
+                <div className={styles['sold-out-overlay']}>
                   <span>Sold Out</span>
                 </div>
               )}
 
-              {/* Button is shown only if not sold out */}
               {!coffee.soldOut && (
                 <button
-                  className="btn-all-coffees"
+                  className={styles['btn-all-coffees']}
                   onClick={() => redirectToDetails(coffee._id)}
                 >
                   Add To Cart

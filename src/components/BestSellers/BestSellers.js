@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import './BestSellers.css';
+import styles from './BestSellers.module.css';
 import { Link } from 'react-router-dom';
 
 function BestSellers() {
@@ -36,20 +36,22 @@ function BestSellers() {
   if (coffees.length === 0) return <p>No coffee data available.</p>;
 
   const currentCoffee = coffees[currentIndex];
-
   return (
-    <div className="carousel-container">
-      <h2>Our Best Sellers</h2>
-      <p className="carousel-subtext">
+    <div className={styles['carousel-container']}>
+      <h2 className={styles.heading}>Our Best Sellers</h2>
+      <p className={styles['carousel-subtext']}>
         Discover our handpicked best-selling coffees, freshly roasted and
         delivered to your door.
       </p>
 
-      <button onClick={prevSlide} className="carousel-button prev-button">
+      <button
+        onClick={prevSlide}
+        className={`${styles['carousel-button']} ${styles['prev-button']}`}
+      >
         &lt;
       </button>
 
-      <div className="carousel-slide">
+      <div className={styles['carousel-slide']}>
         <img src={currentCoffee.imageUrl} alt={currentCoffee.name} />
         <h3>{currentCoffee.name}</h3>
         <p>{currentCoffee.description}</p>
@@ -58,11 +60,15 @@ function BestSellers() {
         </p>
       </div>
 
-      <button onClick={nextSlide} className="carousel-button next-button">
+      <button
+        onClick={nextSlide}
+        className={`${styles['carousel-button']} ${styles['next-button']}`}
+      >
         &gt;
       </button>
+
       <Link to={`/shop/${currentCoffee._id}`}>
-        <button className="details-button">View Details</button>
+        <button className={styles['details-button']}>View Details</button>
       </Link>
     </div>
   );

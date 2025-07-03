@@ -22,8 +22,9 @@
 .testimonial-form-section textarea {
   width: 100%;
   margin-bottom: 20px;
-  padding-left:10px;
+  padding:10px;
   border-radius:10px;
+  border:none
 }
 
 .testimonial-form-section input:focus,
@@ -50,6 +51,9 @@
   color: #6c4f3d; 
   box-shadow: 2px 2px 7px rgba(108, 79, 61, 0.5); 
 }
+.form-container h2{
+  margin-bottom:30px;
+}
 .toggle-button-btn {
   margin-top: 1rem;
   background: none;
@@ -68,13 +72,14 @@
 }
 
 .submit-btn {
-  background-color: #6c4f3d;
+  background-color: #4b2e2a;
   color: white;
   padding: 12px 20px;
   border: none;
-  border-radius: 20px;
+  border-radius: 30px;
   cursor: pointer;
   font-size: 16px;
+  margin-top:20px;
 }
 
 .rating-select:focus {
@@ -83,7 +88,7 @@
 }
 
 .submit-btn:hover {
-  background-color: #5c4532;
+ background-color: #6f3d35;
 }
 
 .testimonials-grid {
